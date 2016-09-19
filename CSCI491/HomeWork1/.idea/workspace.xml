@@ -22,14 +22,23 @@
     <favorites_list name="untitled2" />
   </component>
   <component name="FileEditorManager">
+<<<<<<< HEAD
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/index.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="295">
               <caret line="23" column="10" selection-start-line="23" selection-start-column="10" selection-end-line="23" selection-end-column="10" />
+=======
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="600">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1595">
+              <caret line="90" column="0" selection-start-line="90" selection-start-column="0" selection-end-line="90" selection-end-column="0" />
+>>>>>>> 3f664019debc21bf639fc599e2f26e4ebe8a167d
               <folding>
-                <element signature="e#2902#2908#0" expanded="true" />
+                <element signature="e#2394#2400#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -38,9 +47,11 @@
       <file leaf-file-name="contactUs.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/contactUs.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="21" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
-              <folding />
+            <state relative-caret-position="2585">
+              <caret line="91" column="0" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
+              <folding>
+                <element signature="e#2367#2373#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -77,9 +88,16 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
+<<<<<<< HEAD
     <option name="y" value="23" />
     <option name="width" value="926" />
     <option name="height" value="873" />
+=======
+    <option name="x" value="91" />
+    <option name="y" value="52" />
+    <option name="width" value="1659" />
+    <option name="height" value="1979" />
+>>>>>>> 3f664019debc21bf639fc599e2f26e4ebe8a167d
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -193,15 +211,26 @@
       <updated>1474228054120</updated>
       <workItem from="1474228058280" duration="35000" />
       <workItem from="1474228166883" duration="2223000" />
+<<<<<<< HEAD
       <workItem from="1474241071684" duration="1145000" />
+=======
+      <workItem from="1474243618186" duration="1935000" />
+>>>>>>> 3f664019debc21bf639fc599e2f26e4ebe8a167d
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="3403000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="926" height="873" extended-state="0" />
+=======
+    <option name="totallyTimeSpent" value="4193000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="91" y="52" width="1659" height="1979" extended-state="0" />
+>>>>>>> 3f664019debc21bf639fc599e2f26e4ebe8a167d
     <editor active="true" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -245,20 +274,37 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
+<<<<<<< HEAD
             <element signature="e#2902#2908#0" expanded="true" />
+=======
+            <element signature="e#2394#2400#0" expanded="true" />
+>>>>>>> 3f664019debc21bf639fc599e2f26e4ebe8a167d
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/contactUs.html">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="60">
           <caret line="4" column="21" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
           <folding />
+=======
+        <state relative-caret-position="132">
+          <caret line="4" column="21" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
+          <folding>
+            <element signature="e#2367#2373#0" expanded="true" />
+          </folding>
+>>>>>>> 3f664019debc21bf639fc599e2f26e4ebe8a167d
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/dist/css/normalize.css">
+<<<<<<< HEAD
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+=======
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -266,12 +312,29 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/css/contactUs.html" />
+    <entry file="file://$PROJECT_DIR$/src/contactUs.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2585">
+          <caret line="91" column="0" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
+          <folding>
+            <element signature="e#2367#2373#0" expanded="true" />
+          </folding>
+>>>>>>> 3f664019debc21bf639fc599e2f26e4ebe8a167d
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/css/contactUs.html" />
     <entry file="file://$PROJECT_DIR$/src/index.html">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="295">
           <caret line="23" column="10" selection-start-line="23" selection-start-column="10" selection-end-line="23" selection-end-column="10" />
+=======
+        <state relative-caret-position="1595">
+          <caret line="90" column="0" selection-start-line="90" selection-start-column="0" selection-end-line="90" selection-end-column="0" />
+>>>>>>> 3f664019debc21bf639fc599e2f26e4ebe8a167d
           <folding>
-            <element signature="e#2902#2908#0" expanded="true" />
+            <element signature="e#2394#2400#0" expanded="true" />
           </folding>
         </state>
       </provider>
