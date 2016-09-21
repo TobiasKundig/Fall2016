@@ -1,0 +1,15 @@
+body {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.navbar {
+  margin-bottom: 20px;
+}
+li.active a {
+    background-color: #fff;
+}
+.selected
+{
+    background-color: #fff;
+}
