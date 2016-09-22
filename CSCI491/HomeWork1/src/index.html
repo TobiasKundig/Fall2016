@@ -25,7 +25,7 @@
 <body>
 <!-- Add your site or application content here -->
 <div class="container">
-    <div class="header clearfix">
+    <div class="header clearfix" id="menu">
         <nav>
             <ul class="nav nav-pills pull-right">
                 <li role="presentation" class="active"><a href="#" onclick="showMainDiv()">Home</a></li>
@@ -40,7 +40,7 @@
             <h1>Clinton Vs. Trump</h1>
             <p class="lead">Get the facts about both candidates.</p>
             <p>
-                <img src="img/clinton.jpg" style="width:30%" >
+                <img src="img/clinton.jpg" style="width:30%" onclick="showClintonFacts()">
 
                 <img src="img/trump.jpg" style="width:27%"><br><br>
                 <a class="btn btn-lg btn-success" href="#" role="button">Sign up today</a>
@@ -48,11 +48,17 @@
         </div>
         <div id="contactUs" style="display:none">
             <h1>Contact Us</h1>
-            Name: <input type="text" name="name"><br>
-            Email: <input type="text" name="email"><br>
-            <input type="submit" value="Submit">
-        </div>
+            <p align="left">
+            Name: <input type="text" class="form-control" placeholder="John Smith" name="name"><br>
+            Email: <input type="text" class="form-control" placeholder="js@gmail.com" name="email"><br>
+            </p>
+            <input type="submit" class="btn btn-primary" value="Submit">
 
+        </div>
+        <div id="clinton" style="display:none">
+            <h1>Hilary Clinton</h1>
+
+        </div>
     </div>
 
     <div class="row marketing">
@@ -84,8 +90,9 @@
     </footer>
 
 </div> <!-- /container -->
+<script>
 
-
+</script>
 <script src="https://code.jquery.com/jquery-{{JQUERY_VERSION}}.min.js"></script>
 <script>window.jQuery || document.write('<script src="js/vendor/jquery-{{JQUERY_VERSION}}.min.js"><\/script>')</script>
 <script src="js/plugins.js"></script>
