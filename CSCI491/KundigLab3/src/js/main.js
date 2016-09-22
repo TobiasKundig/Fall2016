@@ -12,6 +12,14 @@ function showWeddingsDiv() {
     document.getElementById('LandscapeDiv').style.display="none";
 }
 
+function validateForm() {
+    var x = document.forms["form"]["name"].value;
+    if (x == null || x == "") {
+        alert("Name must be filled out");
+        return false;
+    }
+}
+
 function modalFunction(modalName){
 
     // Get the modal
