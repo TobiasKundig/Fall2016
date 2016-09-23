@@ -18,6 +18,9 @@ function validateForm() {
         alert("Name must be filled out");
         return false;
     }
+    else{
+        alert("We'll get back to you as soon as possible.")
+    }
 }
 
 function modalFunction(modalName){
