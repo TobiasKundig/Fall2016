@@ -9,10 +9,11 @@
 <form>
     <p>
         What is the next number in the sequnce?
-        <input type="text" name="Answer">
+        <input type="text" name="Answer" id="Answer">
 
-        <button type="button" onclick="createArray()">Submit</button><br>
-        <p id="answer"></p>
+        <button type="button" onclick="checkAnswer()">Submit</button><br>
+        <p id="arrayArea"></p>
+        <input type="text" name="response" id="response">
     </p>
 </form>
 <p>
@@ -22,16 +23,27 @@
     var x = Math.floor((Math.random() * 10) + 1);
     var array = [];
     var returnNum = 0;
+    var text = "";
     function numberFunction(){
         return returnNum += x;
     }
     function createArray(){
-        for (i=0; i < 5; i++){
+        for (var i = 0; i < 5; i++){
             array.push(numberFunction());
         }
-        return array.toString();
+        for (var i = 0; i < array.length - 1; i++){
+            text += array[i] + ", ";
+        }
+        return text;
     }
-    document.getElementById("answer").innerHTML=createArray();
+    document.getElementById("arrayArea").innerHTML=createArray();
+
+    function checkAnswer(){
+        var userAnswer = document.getElementById("Answer").value;
+        var daReturn = document.getElementById("response");
+        daReturn.value = userAnswer;
+
+    }
 </script>
 </body>
 </html>
