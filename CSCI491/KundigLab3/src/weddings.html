@@ -1,36 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
 
+    <title>Wedding Pictures</title>
+
+    <!-- Bootstrap core CSS -->
+    <!-- <link href="../dist/css/bootstrap.min.css" rel="stylesheet"> -->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>
+
+    <!-- Custom styles for this template -->
+    <link href="css/navbar.css" rel="stylesheet">
     <link href="css/modal.css" rel="stylesheet">
 </head>
 <body>
+    <!-- Static navbar -->
+    <div id="header"></div>
+    <div class="jumbotron">
 
-<div id="WeddingsDiv" style="display:none">
-    <h1>Wedding Pictures</h1>
-    <p><div class="row">
-    <div class="column">
-        <img src="img/wedding1.jpg" style="width:100%" onclick="openModal();currentSlide(1)" class="hover-shadow">
+    <div id="WeddingsDiv">
+        <h1>Wedding Pictures</h1>
+        <p><div class="row">
+        <div class="column">
+            <img src="img/wedding1.jpg" style="width:100%" onclick="openModal();currentSlide(1)" class="hover-shadow">
+        </div>
+        <div class="column">
+            <img src="img/wedding2.jpg" style="width:100%" onclick="openModal();currentSlide(2)" class="hover-shadow">
+        </div>
+        <div class="column">
+            <img src="img/wedding3.jpg" style="width:100%" onclick="openModal();currentSlide(3)" class="hover-shadow">
+        </div>
     </div>
-    <div class="column">
-        <img src="img/wedding2.jpg" style="width:100%" onclick="openModal();currentSlide(2)" class="hover-shadow">
-    </div>
-    <div class="column">
-        <img src="img/wedding3.jpg" style="width:100%" onclick="openModal();currentSlide(3)" class="hover-shadow">
-    </div>
-</div>
     <div id="myWeddingModal" class="modal">
         <span class="close cursor" onclick="closeModal()">&times;</span>
         <div class="modal-content">
@@ -72,7 +81,7 @@
         </div>
     </div>
 </div>
-
+</div>
 </body>
 <script>
     function openModal() {
@@ -111,5 +120,8 @@
         dots[slideIndex-1].className += " active";
         captionText.innerHTML = dots[slideIndex-1].alt;
     }
+</script>
+<script>
+    $("#header").load("header.html");
 </script>
 </html>
