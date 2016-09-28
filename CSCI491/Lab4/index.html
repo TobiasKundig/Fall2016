@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Guess The Number Game</title>
+</head>
+<body>
+
+<form>
+    <p>
+        What is the next number in the sequnce?
+        <input type="text" name="Answer">
+
+        <button type="button" onclick="createArray()">Submit</button><br>
+        <p id="answer"></p>
+    </p>
+</form>
+<p>
+
+</p>
+<script>
+    var x = Math.floor((Math.random() * 10) + 1);
+    var array = [];
+    var returnNum = 0;
+    function numberFunction(){
+        return returnNum += x;
+    }
+    function createArray(){
+        for (i=0; i < 5; i++){
+            array.push(numberFunction());
+        }
+        return array.toString();
+    }
+    document.getElementById("answer").innerHTML=createArray();
+</script>
+</body>
+</html>
