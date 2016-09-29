@@ -9,6 +9,9 @@
 
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <!-- Place favicon.ico in the root directory -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <link rel="stylesheet" href="../dist/css/normalize.css">
     <link rel="stylesheet" href="css/main.css">
@@ -24,15 +27,7 @@
 </head>
 <body>
 <div class="container">
-    <div class="header clearfix" id="menu">
-        <nav>
-            <ul class="nav nav-pills pull-right">
-                <li role="presentation" class="active"><a href="index.html" >Home</a></li>
-                <li role="presentation"><a href="#" onclick="showContactUsDiv()">Contact</a></li>
-            </ul>
-        </nav>
-        <h3 class="text-muted">2016 Presidential Election</h3>
-    </div>
+    <div id="heading"></div>
 
     <div class="jumbotron">
         <div id="main">
@@ -48,7 +43,12 @@
             </p>
         </div>
     </div>
-
+    <footer class="footer">
+        <p>&copy; 2016 Company, Inc.</p>
+    </footer>
 </div>
+<script>
+    $("#heading").load("header.html");
+</script>
 </body>
 </html>

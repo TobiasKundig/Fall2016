@@ -9,6 +9,9 @@
 
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <!-- Place favicon.ico in the root directory -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <link rel="stylesheet" href="../dist/css/normalize.css">
     <link rel="stylesheet" href="css/main.css">
@@ -25,17 +28,7 @@
 <body>
 <!-- Add your site or application content here -->
 <div class="container">
-    <header>
-    <div class="header clearfix" id="menu">
-        <nav>
-            <ul class="nav nav-pills pull-right">
-                <li role="presentation" class="active"><a href="#" onclick="showMainDiv()">Home</a></li>
-                <li role="presentation"><a href="contactUs.html">Contact</a></li>
-            </ul>
-        </nav>
-        <h3 class="text-muted">2016 Presidential Election</h3>
-    </div>
-    </header>
+    <div id="heading"></div>
 
     <div class="jumbotron">
         <div id="main">
@@ -54,14 +47,14 @@
         <div class="col-sm-6">
             <h4>More Trump Facts</h4>
             <p>
-                <a href="trumpFacts.html">How many bancrupcies?</a>
+                <a href="trump.html">How many bancrupcies?</a>
             </p>
         </div>
 
         <div class="col-sm-6">
             <h4>More Clinton Facts</h4>
             <p>
-                <a href="clintonFacts.html">Why did she delete emails?</a>
+                <a href="clinton.html">Why did she delete emails?</a>
             </p>
         </div>
     </div>
@@ -72,21 +65,7 @@
 
 </div> <!-- /container -->
 <script>
-
-</script>
-<script src="https://code.jquery.com/jquery-{{JQUERY_VERSION}}.min.js"></script>
-<script>window.jQuery || document.write('<script src="js/vendor/jquery-{{JQUERY_VERSION}}.min.js"><\/script>')</script>
-<script src="js/plugins.js"></script>
-<script src="js/main.js"></script>
-
-<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-<script>
-    (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-        function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-        e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-        e.src='https://www.google-analytics.com/analytics.js';
-        r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-    ga('create','UA-XXXXX-X','auto');ga('send','pageview');
+    $("#heading").load("header.html");
 </script>
 </body>
 </html>
