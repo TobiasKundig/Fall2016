@@ -1,15 +1,23 @@
-function showLandscapeDiv() {
+function showLandscapes() {
 
-    document.getElementById('Main').style.display="none";
-    document.getElementById('LandscapeDiv').style.display="block";
-    document.getElementById('WeddingsDiv').style.display="none";
+    window.location.href="landscape.html";
 }
 
-function showWeddingsDiv() {
+function showWeddings() {
 
-    document.getElementById('Main').style.display="none";
-    document.getElementById('WeddingsDiv').style.display="block";
-    document.getElementById('LandscapeDiv').style.display="none";
+    window.location.href="weddings.html";
+}
+
+function showSports(){
+    window.location.href="sports.html";
+}
+
+function showContactUs(){
+    window.location.href="contactUs.html";
+}
+
+function showIndex(){
+    window.locaton.href="index.html";
 }
 
 function validateForm() {

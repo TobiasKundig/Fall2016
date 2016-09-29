@@ -17,8 +17,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>
-
-
 </head>
 
 <body>
@@ -35,9 +33,11 @@
             <h1>Contact Us</h1>
             <p>Please enter your contact information</p>
             <form name="form" action="index.html" onsubmit="validateForm()">
-                Name: <input type="text" name="name"><br>
-                Email: <input type="text" name=""email><br>
-                <input type="submit" value="Submit">
+                Name: <input type="text" class="form-control" placeholder="John Smith" name="name"><br>
+                Email: <input type="text" class="form-control" placeholder="js@gmail.com" name="email"><br>
+                <p align="center">
+                    <input type="submit" class="btn btn-primary" value="Submit">
+                </p>
             </form>
         </div>
 

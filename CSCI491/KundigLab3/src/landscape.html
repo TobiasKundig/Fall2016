@@ -46,16 +46,62 @@
                         <img src="img/picture4.jpg" style="width:100%" onclick="openModal();currentSlide(4)" class="hover-shadow">
                     </div>
                 </div>
+
+                <div id="myLandscapeModal" class="modal">
+                    <span class="close cursor" onclick="closeModal()">&times;</span>
+                    <div class="modal-content">
+
+                        <div class="mySlides">
+                            <div class="numbertext">1 / 4</div>
+                            <img src="img/picture1.jpg" style="width:100%">
+                        </div>
+
+                        <div class="mySlides">
+                            <div class="numbertext">2 / 4</div>
+                            <img src="img/picture2.jpg" style="width:100%">
+                        </div>
+
+                        <div class="mySlides">
+                            <div class="numbertext">3 / 4</div>
+                            <img src="img/picture3.jpg" style="width:100%">
+                        </div>
+
+                        <div class="mySlides">
+                            <div class="numbertext">4 / 4</div>
+                            <img src="img/picture4.jpg" style="width:100%">
+                        </div>
+
+                        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+                        <div class="caption-container">
+                            <p id="caption"></p>
+                        </div>
+
+                        <div class="column">
+                            <img class="demo" src="img/wedding1.jpg" onclick="currentSlide(1)" alt="Nature">
+                        </div>
+
+                        <div class="column">
+                            <img class="demo" src="img/wedding2.jpg" onclick="currentSlide(2)" alt="Trolltunga">
+                        </div>
+
+                        <div class="column">
+                            <img class="demo" src="img/wedding3.jpg" onclick="currentSlide(3)" alt="Mountains">
+                        </div>
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 <script>
     function openModal() {
-        document.getElementById('myModal').style.display = "block";
+        document.getElementById('myLandscapeModal').style.display = "block";
     }
 
     function closeModal() {
-        document.getElementById('myModal').style.display = "none";
+        document.getElementById('myLandscapeModal').style.display = "none";
     }
 
     var slideIndex = 1;
