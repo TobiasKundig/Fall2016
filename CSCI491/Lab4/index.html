@@ -13,8 +13,9 @@
 
         <button type="button" onclick="checkAnswer()">Submit</button><br>
         <p id="arrayArea"></p>
-        <input type="text" name="response" id="response">
+
     </p>
+    <p id="output"></p>
 </form>
 <p>
 
@@ -40,9 +41,14 @@
 
     function checkAnswer(){
         var userAnswer = document.getElementById("Answer").value;
-        var daReturn = document.getElementById("response");
-        daReturn.value = userAnswer;
+        var daReturn = document.getElementById("output")
+        if(userAnswer == array.pop()){
 
+            daReturn.innerHTML = "You were right!";
+        }
+        else{
+            daReturn.innerHTML = "Sorry try again einstein!";
+        }
     }
 </script>
 </body>
