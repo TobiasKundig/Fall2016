@@ -3,47 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <title>Guess The Number Game</title>
+    <script>
+        function numberFunction(){
+            var returnNum = 0;
+            var x = Math.floor((Math.random() * 10) + 1);
+
+            return {
+                nextNum: function(){
+                    return returnNum += x;
+                }
+            };
+        }
+    </script>
 </head>
 <body>
+    <script>
+        var temp = numberFunction();
+        var array = [];
 
-<form>
-    <p>
-        What is the next number in the sequnce?
-        <input type="text" name="Answer" id="Answer">
+        function createArray(){
+            var text = "";
+            for (var i = 0; i < 5; i++){
+                array.push(temp.nextNum());
+            }
+            for (var i = 0; i < array.length - 1; i++){
+                text += array[i] + ", ";
+            }
+            return text;
+        }
+    </script>
 
-        <button type="button" onclick="checkAnswer()">Submit</button><br>
-        <p id="arrayArea"></p>
+    <form>
+        <p>
+            What is the next number in the sequnce?
+            <input type="text" name="Answer" id="Answer">
 
-    </p>
-    <p id="output"></p>
-</form>
-<p>
+            <button type="button" onclick="checkAnswer()">Submit</button><br>
+            <p id="arrayArea"></p>
 
-</p>
+        </p>
+        <p id="output"></p>
+    </form>
+
 <script>
-    var x = Math.floor((Math.random() * 10) + 1);
-    var array = [];
-    var returnNum = 0;
-    var text = "";
-    function numberFunction(){
-        return returnNum += x;
-    }
-    function createArray(){
-        for (var i = 0; i < 5; i++){
-            array.push(numberFunction());
-        }
-        for (var i = 0; i < array.length - 1; i++){
-            text += array[i] + ", ";
-        }
-        return text;
-    }
+
     document.getElementById("arrayArea").innerHTML=createArray();
 
     function checkAnswer(){
         var userAnswer = document.getElementById("Answer").value;
-        var daReturn = document.getElementById("output")
+        var daReturn = document.getElementById("output");
         if(userAnswer == array.pop()){
-
             daReturn.innerHTML = "You were right!";
         }
         else{
