@@ -2,25 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Sound Guessing Game</title>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
 
 </head>
 <body>
-    <p>Here's the Table</p>
-    <div id="sound"></div>
+    <p>Match the sound by pressing the buttons</p>
 
 <script>
+
+    //Global attributes
     var audioArray = [];
     var songsArray = [];
 
+    //Table and Object creation
     makeTable();
     objectFactory();
 
+    //Two for loops that create the first and second rows in a 3x2 table
     function makeTable(){
 
-        document.writeln("<table border='1' width='10%'>");
+        document.writeln("<table border='1' width='15%'>");
         document.writeln("<tr>");
 
         for(var i=0; i<3; i++){
@@ -41,19 +44,17 @@
         document.writeln("</table>");
     }
 
+    // Plays the choosen song
     function myPlay(a){
-
         for (var k=0; k < audioArray.length; k++){
-
             if (a==audioArray[k].element){
 
                 audioArray[k].play();
             }
-
         }
-
     }
 
+    //Functions and data structures needed to create and calculate game state
     function objectFactory(){
         songsArray[0] = new Audio('song1.mp3');
         songsArray[1] = new Audio('song2.mp3');
@@ -61,6 +62,7 @@
 
         var Random = Math.floor((Math.random() * 3));
 
+        // Creates objects. Should have 6 when done.
         for(var j=0; j<3; j++) {
 
             var theObject = returnObject();
@@ -70,8 +72,10 @@
             audioArray[j] = theObject;
         }
 
+        //First function to return objects
         function returnObject(){
             return {
+                //Attributes
                 audio: songsArray[j],
                 button: document.getElementById(''+j+''),
                 element: j,
@@ -79,36 +83,39 @@
                 amOut: false,
                 pair: 99,
 
+                //Plays the song and sets all attributes and figures
+                //where in the game the choice is
                 play : function(){
+
+                    //sets attributes
                     this.audio.play();
-                    this.button.style.display = 'none';
+                    this.button.style.visibility = 'hidden';
                     this.amFlipped = true;
 
+                    //calculates if its first choice of it its pair is flipped
+                    //or if it needs to flip stuff back
                     if(audioArray[this.pair].amFlipped == true){
                         this.amOut = true;
                         this.amFlipped = true;
                         audioArray[this.pair].amOut = true;
                     }
                     else {
-                        for(var t = 0; t < audioArray.length; t++){
-                            if(audioArray[t].amFlipped && audioArray[t].element != this.element){
-                                for(var y=0; y < audioArray.length; y++){
-                                    if(audioArray[y].amOut == false && audioArray[y].amFlipped == true){
-                                        audioArray[y].button.style.display = 'block';
-                                        audioArray[y].amFlipped = false;
-                                        this.button.style.display = 'block';
-                                        this.amFlipped = false;
-                                        console.log("Flipping back "+audioArray[y].element);
-                                    }
-                                }
-                            }
-                        }
+                        var theOne = anotherFlipped(this);
+                        if(theOne != null){
+                            theOne.button.style.visibility = 'visible';
+                            theOne.amFlipped = false;
+                            this.button.style.visibility = 'visible';
+                            this.amFlipped = false;
+                            console.log("Flipping back "+audioArray[t].element);
 
+                        }
                     }
                 }
             }
         }
 
+        //Second object creation function that calculates where the pair is
+        //and assigns appropriate attributes
         function pairedWith(obj) {
 
             var newRandom = Math.floor((Math.random() * 3) + 3);
@@ -135,16 +142,17 @@
 
         }
 
-        function anotherFlipped(){
+        //Figures out what element in array is already flipped AND is NOT out
+        // AND is NOT the same object then returns it
+        function anotherFlipped(obj){
             for(var t = 0; t < audioArray.length; t++){
-                if(audioArray[t].amFlipped){
-                    return true;
+                if(audioArray[t].amFlipped && !audioArray[t].amOut && audioArray[t].element != obj.element){
+                    return audioArray[t];
                 }
             }
         }
     }
 
 </script>
-
 </body>
 </html>
