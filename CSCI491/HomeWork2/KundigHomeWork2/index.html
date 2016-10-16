@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+
+</head>
+<body>
+    <p>Here's the Table</p>
+    <div id="sound"></div>
+
+<script>
+    var audioArray = [];
+    var songsArray = [];
+
+    makeTable();
+    objectFactory();
+
+    function makeTable(){
+
+        document.writeln("<table border='1' width='10%'>");
+        document.writeln("<tr>");
+
+        for(var i=0; i<3; i++){
+
+            document.writeln("<td>");
+            document.writeln("<button type='button' onclick='myPlay("+ i +")' id='"+i+"'>Try Me!</button>");
+            document.writeln("</td>");
+        }
+        document.writeln("</tr>");
+
+        document.writeln("<tr>");
+        for(var z=3; z<6; z++){
+            document.writeln("<td>");
+            document.writeln("<button type='button' onclick='myPlay("+ z +")' id='"+z+"'>Try Me!</button>");
+            document.writeln("</td>");
+        }
+        document.writeln("</tr>");
+        document.writeln("</table>");
+    }
+
+    function myPlay(a){
+
+        for (var k=0; k < audioArray.length; k++){
+
+            if (a==audioArray[k].element){
+
+                audioArray[k].play();
+            }
+
+        }
+
+    }
+
+    function objectFactory(){
+        songsArray[0] = new Audio('song1.mp3');
+        songsArray[1] = new Audio('song2.mp3');
+        songsArray[2] = new Audio('song3.mp3');
+
+        var Random = Math.floor((Math.random() * 3));
+
+        for(var j=0; j<3; j++) {
+
+            var theObject = returnObject();
+            if (theObject.pair==99){
+                pairedWith(theObject);
+            }
+            audioArray[j] = theObject;
+        }
+
+        function returnObject(){
+            return {
+                audio: songsArray[j],
+                button: document.getElementById(''+j+''),
+                element: j,
+                amFlipped: false,
+                amOut: false,
+                pair: 99,
+
+                play : function(){
+                    this.audio.play();
+                    this.button.style.display = 'none';
+                    this.amFlipped = true;
+
+                    if(audioArray[this.pair].amFlipped == true){
+                        this.amOut = true;
+                        this.amFlipped = true;
+                        audioArray[this.pair].amOut = true;
+                    }
+                    else {
+                        for(var t = 0; t < audioArray.length; t++){
+                            if(audioArray[t].amFlipped && audioArray[t].element != this.element){
+                                for(var y=0; y < audioArray.length; y++){
+                                    if(audioArray[y].amOut == false && audioArray[y].amFlipped == true){
+                                        audioArray[y].button.style.display = 'block';
+                                        audioArray[y].amFlipped = false;
+                                        this.button.style.display = 'block';
+                                        this.amFlipped = false;
+                                        console.log("Flipping back "+audioArray[y].element);
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+                }
+            }
+        }
+
+        function pairedWith(obj) {
+
+            var newRandom = Math.floor((Math.random() * 3) + 3);
+
+            if(audioArray[newRandom] == null){
+
+                obj.pair = newRandom;
+                var newObj = returnObject();
+                newObj.pair = obj.element;
+                newObj.button = document.getElementById(''+newRandom+'');
+                newObj.element = newRandom;
+
+                newObj.audio = songsArray[obj.element];
+
+                audioArray[newRandom] = newObj;
+
+                console.log("Created object"+ audioArray[newRandom].element);
+
+                console.log("Paired with " + newObj.pair);
+            }
+            else{
+                pairedWith(obj);
+            }
+
+        }
+
+        function anotherFlipped(){
+            for(var t = 0; t < audioArray.length; t++){
+                if(audioArray[t].amFlipped){
+                    return true;
+                }
+            }
+        }
+    }
+
+</script>
+
+</body>
+</html>
