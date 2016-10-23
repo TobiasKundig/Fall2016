@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sign in and Comment</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+
+                    <ul class="nav navbar-nav navbar-right">
+
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                            <form id="signin" class="navbar-form navbar-right" role="form">
+
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                    <input id="email" type="email" class="form-control" name="email" value="" placeholder="Email Address">
+                                </div>
+
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                    <input id="password" type="password" class="form-control" name="password" value="" placeholder="Password">
+                                </div>
+
+                                <button type="submit" class="btn btn-primary">Login</button>
+                            </form>
+
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div id="logBoxDiv">
+            <div class="container">
+                <div class="col-md-6" >
+                    <div>
+                        <form id="signup" action="main.html">
+                            <h1>Create an Account</h1>
+                            <input name="user[email]" type="email" placeholder="Email address" class="input pass"/>
+                            <input name="user[password]" type="password" placeholder="Choose a password" required="required" class="input pass"/>
+                            <input name="user[password2]" type="password" placeholder="Confirm password" required="required" class="input pass"/>
+                            <input type="submit" value="Sign me up!" class="inputButton" onclick="setCookie(document.getElementsByName('user[email]'), document.getElementsByName('user[password]'), 1, 1);"/>
+
+                        </form>
+                    </div>
+                </div>
+                <!--col-md-6-->
+            </div>
+        </div>
+
+
+    </div>
+    <script>
+
+        function setCookie(cname,pw, cvalue,exdays) {
+
+            console.log("We got to setCookie");
+
+            var d = new Date();
+            d.setTime(d.getTime() + (exdays*24*60*60*1000));
+            var expires = "expires=" + d.toGMTString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/" + ";" + pw;
+        }
+
+        function getCookie(cname) {
+            var name = cname + "=";
+            var ca = document.cookie.split(';');
+            for(var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+
+        function checkCookie() {
+            var user=getCookie("username");
+            if (user != "") {
+                alert("Welcome again " + user);
+            } else {
+                user = prompt("Please enter your name:","");
+                if (user != "" && user != null) {
+                    setCookie("username", user, 30);
+                }
+            }
+        }
+
+    </script>
+</body>
+</html>
