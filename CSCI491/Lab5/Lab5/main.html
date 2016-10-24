@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Sign in and Comment</title>
     <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="comments.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -61,8 +62,75 @@
                     Regardless of whether the FBI is chill with his shenanigans right now, The Jester should probably quit while he’s ahead. You either die a hero or you live long enough to see yourself become the villain.
                 </small>
             </p>
-            <p><a class="btn btn-primary btn-lg" href="#" role="button">Comment</a></p>
+            <p><a class="btn btn-primary btn-lg" onclick="showComments();" >Comment</a></p>
+
+            <div class="detailBox" id="detailBox" style="display: none;">
+                <div class="titleBox">
+                    <label>Comment Box</label>
+                    <button type="button" class="close" aria-hidden="true">&times;</button>
+                </div>
+                <div class="commentBox">
+
+                    <p class="taskDescription">Please comment below</p>
+                </div>
+                <div class="actionBox">
+                    <ul class="commentList" id="commentList">
+                        <li>
+                            <div class="commenterImage">
+                                <img src="http://placekitten.com/50/50" />
+                            </div>
+                            <div class="commentText">
+                                <p class="">Hello this is a test comment.</p> <span class="date sub-text">on March 5th, 2014</span>
+
+                            </div>
+                        </li>
+                        <li>
+                            <div class="commenterImage">
+                                <img src="http://placekitten.com/45/45" />
+                            </div>
+                            <div class="commentText">
+                                <p class="">Hello this is a test comment and this comment is particularly very long and it goes on and on and on.</p> <span class="date sub-text">on March 5th, 2014</span>
+
+                            </div>
+                        </li>
+                        <li>
+                            <div class="commenterImage">
+                                <img src="http://placekitten.com/40/40" />
+                            </div>
+                            <div class="commentText">
+                                <p class="">Hello this is a test comment.</p> <span class="date sub-text">on March 5th, 2014</span>
+
+                            </div>
+                        </li>
+                    </ul>
+                    <form class="form-inline" role="form" onSubmit="addElement(document.getElementById('comment'))">
+                        <div class="form-group">
+                            <input class="form-control" type="text" placeholder="Your comments" id="comment" />
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-default">Add</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
+    <script>
+        function showComments(){
+            document.getElementById('detailBox').style.display="block";
+        }
+
+        function addElement(){
+
+            var p = document.getElementById('commentList');
+            var insert = document.getElementById('comment').value;
+
+            var newElement = document.createElement("li");
+            newElement.innerHTML = '<div class="commenterImage"><img src="http://placekitten.com/50/50"></div>';
+            newElement.innerHTML += '<div class="commentText"><p class="">' + insert + '</p><span class="date sub-text">'+ new Date(); +'</span></div>';
+            p.appendChild(newElement);
+        }
+
+    </script>
 </body>
 </html>
