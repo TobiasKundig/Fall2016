@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="js/jquery-1.11.3.js"></script>
+    <script src="js/jquery.cookie.js"></script>
+    <script src="js/main.js"></script>
 </head>
 <body>
     <div class="container">
@@ -42,6 +45,17 @@
                                 <button type="submit" class="btn btn-primary">Login</button>
                             </form>
 
+                        </div>
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2" style="display: none;">
+
+                            <form id="signout" class="navbar-form navbar-right" role="form" action="index.html">
+                                <p style="color: white; font-size: 130%;">Welcome back,
+                                    <text id="username"></text>
+                                    <button type="submit" class="btn btn-primary">
+                                        Logout
+                                    </button>
+                                </p>
+                            </form>
                         </div>
                     </ul>
                 </div>
@@ -116,21 +130,30 @@
         </div>
     </div>
     <script>
-        function showComments(){
-            document.getElementById('detailBox').style.display="block";
-        }
-
-        function addElement(){
-
-            var p = document.getElementById('commentList');
-            var insert = document.getElementById('comment').value;
-
-            var newElement = document.createElement("li");
-            newElement.innerHTML = '<div class="commenterImage"><img src="http://placekitten.com/50/50"></div>';
-            newElement.innerHTML += '<div class="commentText"><p class="">' + insert + '</p><span class="date sub-text">'+ new Date(); +'</span></div>';
-            p.appendChild(newElement);
-        }
 
     </script>
+
+<script>
+    window.onload = function(){
+        var user = getCookie("myName");
+        console.log("Cookie get name " + user);
+        if (user != "") {
+            document.getElementById('signin').style.display='none';
+
+            document.getElementById('bs-example-navbar-collapse-2').style.display='block';
+            document.getElementById('username').innerText = user;
+        } else {
+            user = prompt("Please enter your name:", "");
+            if (user != "" && user != null) {
+                setCookie("username", user, 365);
+            }
+        }
+    };
+
+    $('#signout').submit(function(){
+        window.location.href = "index.html";
+
+    });
+</script>
 </body>
 </html>

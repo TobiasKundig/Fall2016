@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="js/jquery-1.11.3.js"></script>
+    <script src="js/jquery.cookie.js"></script>
+    <script src="js/main.js"></script>
 </head>
 <body>
     <div class="container">
@@ -30,7 +33,7 @@
 
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                    <input id="email" type="email" class="form-control" name="email" value="" placeholder="Email Address">
+                                    <input id="email" type="text" class="form-control" name="email" value="" placeholder="Email Address"/>
                                 </div>
 
                                 <div class="input-group">
@@ -52,59 +55,53 @@
                     <div>
                         <form id="signup" action="main.html">
                             <h1>Create an Account</h1>
-                            <input name="user[email]" type="email" placeholder="Email address" class="input pass"/>
+                            <input id="email1" type="text" placeholder="Email address" class="input pass"/>
                             <input name="user[password]" type="password" placeholder="Choose a password" required="required" class="input pass"/>
                             <input name="user[password2]" type="password" placeholder="Confirm password" required="required" class="input pass"/>
-                            <input type="submit" value="Sign me up!" class="inputButton" onclick="setCookie(document.getElementsByName('user[email]'), document.getElementsByName('user[password]'), 1, 1);"/>
+                            <input type="submit" value="Sign me up!" class="inputButton" id="btnSubmit"/>
 
                         </form>
+
                     </div>
                 </div>
                 <!--col-md-6-->
             </div>
         </div>
 
-
     </div>
     <script>
+        $('#signup').submit(function(){
+            var name = $("#email1").val();
+            console.log("name " + name);
+            //$.cookie("myName", name); // Sample 1
+            $.cookie("myName", name, { expires: 7 }); // Sample 2
+            //$.cookie("myName", name, { path: '/admin', expires: 7 }); // Sample 3
 
-        function setCookie(cname,pw, cvalue,exdays) {
+        });
 
-            console.log("We got to setCookie");
-
-            var d = new Date();
-            d.setTime(d.getTime() + (exdays*24*60*60*1000));
-            var expires = "expires=" + d.toGMTString();
-            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/" + ";" + pw;
-        }
-
-        function getCookie(cname) {
-            var name = cname + "=";
-            var ca = document.cookie.split(';');
-            for(var i = 0; i < ca.length; i++) {
-                var c = ca[i];
-                while (c.charAt(0) == ' ') {
-                    c = c.substring(1);
-                }
-                if (c.indexOf(name) == 0) {
-                    return c.substring(name.length, c.length);
-                }
-            }
-            return "";
-        }
-
-        function checkCookie() {
-            var user=getCookie("username");
+        $('#signin').submit(function(){
+            var user = getCookie("myName");
+            console.log("Cookie get name " + user);
             if (user != "") {
-                alert("Welcome again " + user);
+
+                window.location.href = "main.html";
+
             } else {
-                user = prompt("Please enter your name:","");
-                if (user != "" && user != null) {
-                    setCookie("username", user, 30);
-                }
+
+            }
+        });
+
+        window.onload = function(){
+            var user = getCookie("myName");
+            console.log("Cookie get name " + user);
+            if (user != "") {
+
+                document.getElementById('email').innerHTML = "" + user;
+
+            } else {
+
             }
         }
-
     </script>
 </body>
 </html>
