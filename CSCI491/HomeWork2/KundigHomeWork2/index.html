@@ -22,25 +22,22 @@
 
     //Two for loops that create the first and second rows in a 3x2 table
     function makeTable(){
+        var index = 0;
 
-        document.writeln("<table border='1' width='15%'>");
+        document.writeln("<table border='1' width='20%'>");
         document.writeln("<tr>");
 
-        for(var i=0; i<3; i++){
+        for(var h=0; h<3; h++){
 
-            document.writeln("<td>");
-            document.writeln("<button type='button' onclick='myPlay("+ i +")' id='"+i+"'>Try Me!</button>");
-            document.writeln("</td>");
-        }
-        document.writeln("</tr>");
+            for(var i=0; i<4; i++){
 
-        document.writeln("<tr>");
-        for(var z=3; z<6; z++){
-            document.writeln("<td>");
-            document.writeln("<button type='button' onclick='myPlay("+ z +")' id='"+z+"'>Try Me!</button>");
-            document.writeln("</td>");
+                document.writeln("<td>");
+                document.writeln("<button type='button' onclick='myPlay("+ index +")' id='"+index+"'>Try Me!</button>");
+                document.writeln("</td>");
+                index++;
+            }
+            document.writeln("</tr>");
         }
-        document.writeln("</tr>");
         document.writeln("</table>");
     }
 
@@ -59,11 +56,12 @@
         songsArray[0] = new Audio('song1.mp3');
         songsArray[1] = new Audio('song2.mp3');
         songsArray[2] = new Audio('song3.mp3');
+        songsArray[3] = new Audio('song4.mp3');
+        songsArray[4] = new Audio('song5.mp3');
+        songsArray[5] = new Audio('song6.mp3');
 
-        var Random = Math.floor((Math.random() * 3));
-
-        // Creates objects. Should have 6 when done.
-        for(var j=0; j<3; j++) {
+        // Creates objects. Should have 12 when done.
+        for(var j=0; j<6; j++) {
 
             var theObject = returnObject();
             if (theObject.pair==99){
@@ -118,7 +116,7 @@
         //and assigns appropriate attributes
         function pairedWith(obj) {
 
-            var newRandom = Math.floor((Math.random() * 3) + 3);
+            var newRandom = Math.floor((Math.random() * 6) + 6);
 
             if(audioArray[newRandom] == null){
 
