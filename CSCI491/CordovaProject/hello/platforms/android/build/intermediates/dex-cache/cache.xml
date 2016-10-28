@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/kundigt/scratch/GitRepoFall2016/CSCI491/CordovaProject/hello/platforms/android/build/intermediates/exploded-aar/android/CordovaLib/unspecified/debug/jars/classes.jar"
+        jumboMode="false"
+        revision="25.0.0"
+        sha1="4457bbbc5179bf08130acbacf7f4dde275c6d4a3">
+        <dex dex="/Users/kundigt/scratch/GitRepoFall2016/CSCI491/CordovaProject/hello/platforms/android/build/intermediates/pre-dexed/debug/CordovaLib-unspecified-debug_c7d69119103a043ba270e8d336516e28c2e404fd.jar" />
+    </item>
+
+</items>
