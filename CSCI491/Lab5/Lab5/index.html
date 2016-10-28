@@ -54,7 +54,7 @@
             <div class="container">
                 <div class="col-md-6" >
                     <div>
-                        <form id="signup">
+                        <form id="signup" onsubmit="return false">
                             <h1>Create an Account</h1>
                             <input id="email1" type="email" placeholder="Email address" class="input pass"/>
                             <input id="username1" type="text" placeholder="Username" class="input pass"/>
@@ -76,13 +76,14 @@
             var checkPassword = $("#password2").val();
 
             if (password != checkPassword){
-                alert("Passwords didn't match!");
+                console.log("Passwords didn't match!");
                 window.location.href="index.html";
             }else{
                 $.cookie("email", email, { expires: 7 });
                 $.cookie("username", username);
                 $.cookie("password", password);
                 console.log(" The passwords are " + password + " and " + checkPassword + " Username " + username);
+                window.location.href = "main.html";
             }
         });
 
@@ -110,18 +111,26 @@
         });
 
         window.onload = function(){
-            var user = getCookie("myName");
+            var user = getCookie("username");
             console.log("Cookie get name " + user);
             if (user != "") {
 
-                document.getElementById('email').innerHTML = "" + user;
+                document.getElementById('username').innerHTML = "" + user;
 
             } else {
 
             }
         };
         $('#password1').pwstrength({
-            ui: { showVerdictsInsideProgressBar: true }
+            ui: { showVerdictsInsideProgressBar: true },
+            common :{
+                minChar: 8
+            },
+            rules :{
+                wordLowercase: 1,
+                wordUppercase: 1
+
+            }
         });
     </script>
 </body>
