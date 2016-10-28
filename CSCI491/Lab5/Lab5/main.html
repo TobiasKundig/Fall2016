@@ -28,24 +28,6 @@
 
                     <ul class="nav navbar-nav navbar-right">
 
-                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
-                            <form id="signin" class="navbar-form navbar-right" role="form">
-
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                    <input id="email" type="email" class="form-control" name="email" value="" placeholder="Email Address">
-                                </div>
-
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                    <input id="password" type="password" class="form-control" name="password" value="" placeholder="Password">
-                                </div>
-
-                                <button type="submit" class="btn btn-primary">Login</button>
-                            </form>
-
-                        </div>
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2" style="display: none;">
 
                             <form id="signout" class="navbar-form navbar-right" role="form" action="index.html">
@@ -144,11 +126,8 @@
         var test = JSON.parse(localStorage.getItem("commentArray"));
         var p = document.getElementById('commentList');
         console.log(username);
-        
-        if (username != "") {
-            document.getElementById('signin').style.display='none';
 
-            document.getElementById('bs-example-navbar-collapse-2').style.display='block';
+        if (username != "") {
             document.getElementById('username').innerText = username;
         } else {
             user = prompt("Please enter your name:", "");
@@ -156,7 +135,6 @@
                 setCookie("username", user, 365);
             }
         }
-
 
         if(test.length > 0){
             test.forEach(function(comment){

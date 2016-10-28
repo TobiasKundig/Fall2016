@@ -30,7 +30,7 @@
                         <p class="nav navbar-text" style="display: none;">Logged in as</p>
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
-                            <form id="signin" class="navbar-form navbar-right" role="form" action="main.html">
+                            <form id="signin" class="navbar-form navbar-right" role="form" onsubmit="return false;">
 
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -39,7 +39,7 @@
 
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                    <input id="password" class="form-control" value="" placeholder="Password">
+                                    <input id="password" type="password" class="form-control" value="" placeholder="Password">
                                 </div>
 
                                 <button type="submit" class="btn btn-primary" value="Submit">Login</button>
@@ -93,17 +93,16 @@
             var enteredPassword = document.getElementById("password");
             var enteredUsername = document.getElementById("username");
 
-            console.log("Cookie get name " + username);
-            if (username == enteredUsername) {
+            console.log("Cookie get name " + username + " " + enteredUsername.value + " end.");
+            if (username == enteredUsername.value) {
 
-                if (getPassword != enteredPassword){
+                if (getPassword != enteredPassword.value){
                     alert("Passwords didn't match!");
                     window.location.href="index.html";
                 }else{
                     window.location.href = "main.html";
                 }
-
-
+                
             } else {
                 alert("Usernames didn't match");
                 window.location.href="index.html";
@@ -112,7 +111,7 @@
 
         window.onload = function(){
             var user = getCookie("username");
-            console.log("Cookie get name " + user);
+
             if (user != "") {
 
                 document.getElementById('username').innerHTML = "" + user;
