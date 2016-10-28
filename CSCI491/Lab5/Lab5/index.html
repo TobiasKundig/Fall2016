@@ -11,6 +11,7 @@
     <script src="js/jquery-1.11.3.js"></script>
     <script src="js/jquery.cookie.js"></script>
     <script src="js/main.js"></script>
+    <script type="text/javascript" src="node_modules/pwstrength-bootstrap/dist/pwstrength-bootstrap.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -33,12 +34,12 @@
 
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                    <input id="email" type="text" class="form-control" name="email" value="" placeholder="Email Address"/>
+                                    <input id="username" type="text" class="form-control" name="email" value="" placeholder="Username" required="required"/>
                                 </div>
 
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                    <input id="password" type="password" class="form-control" name="password" value="" placeholder="Password">
+                                    <input id="password" class="form-control" value="" placeholder="Password">
                                 </div>
 
                                 <button type="submit" class="btn btn-primary" value="Submit">Login</button>
@@ -53,13 +54,13 @@
             <div class="container">
                 <div class="col-md-6" >
                     <div>
-                        <form id="signup" action="main.html">
+                        <form id="signup">
                             <h1>Create an Account</h1>
-                            <input id="email1" type="text" placeholder="Email address" class="input pass"/>
-                            <input name="user[password]" type="password" placeholder="Choose a password" required="required" class="input pass"/>
-                            <input name="user[password2]" type="password" placeholder="Confirm password" required="required" class="input pass"/>
+                            <input id="email1" type="email" placeholder="Email address" class="input pass"/>
+                            <input id="username1" type="text" placeholder="Username" class="input pass"/>
+                            <input id="password1" type="password" placeholder="Choose a password" required="required" class="input pass"/>
+                            <input id="password2" type="password" placeholder="Confirm password" required="required" class="input pass"/>
                             <input type="submit" value="Sign me up!" class="inputButton" id="btnSubmit"/>
-
                         </form>
                     </div>
                 </div>
@@ -69,23 +70,42 @@
     </div>
     <script>
         $('#signup').submit(function(){
-            var name = $("#email1").val();
-            console.log("name " + name);
-            //$.cookie("myName", name); // Sample 1
-            $.cookie("myName", name, { expires: 7 }); // Sample 2
-            //$.cookie("myName", name, { path: '/admin', expires: 7 }); // Sample 3
+            var email = $("#email1").val();
+            var username = $("#username1").val();
+            var password = $("#password1").val();
+            var checkPassword = $("#password2").val();
 
+            if (password != checkPassword){
+                alert("Passwords didn't match!");
+                window.location.href="index.html";
+            }else{
+                $.cookie("email", email, { expires: 7 });
+                $.cookie("username", username);
+                $.cookie("password", password);
+                console.log(" The passwords are " + password + " and " + checkPassword + " Username " + username);
+            }
         });
 
         $('#signin').submit(function(){
-            var user = getCookie("myName");
-            console.log("Cookie get name " + user);
-            if (user != "") {
+            var username = getCookie("username");
+            var getPassword = getCookie("password");
+            var enteredPassword = document.getElementById("password");
+            var enteredUsername = document.getElementById("username");
 
-                window.location.href = "main.html";
+            console.log("Cookie get name " + username);
+            if (username == enteredUsername) {
+
+                if (getPassword != enteredPassword){
+                    alert("Passwords didn't match!");
+                    window.location.href="index.html";
+                }else{
+                    window.location.href = "main.html";
+                }
+
 
             } else {
-
+                alert("Usernames didn't match");
+                window.location.href="index.html";
             }
         });
 
@@ -99,7 +119,10 @@
             } else {
 
             }
-        }
+        };
+        $('#password1').pwstrength({
+            ui: { showVerdictsInsideProgressBar: true }
+        });
     </script>
 </body>
 </html>

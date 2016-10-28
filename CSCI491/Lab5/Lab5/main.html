@@ -139,16 +139,16 @@
     var id = 0;
 
     window.onload = function(){
-        var user = getCookie("myName");
+        var username = getCookie("username");
         //var getComments = localStorage.getItem("comment");
         var test = JSON.parse(localStorage.getItem("commentArray"));
         var p = document.getElementById('commentList');
-
-        if (user != "") {
+console.log(username);
+        if (username != "") {
             document.getElementById('signin').style.display='none';
 
             document.getElementById('bs-example-navbar-collapse-2').style.display='block';
-            document.getElementById('username').innerText = user.toString();
+            document.getElementById('username').innerText = username;
         } else {
             user = prompt("Please enter your name:", "");
             if (user != "" && user != null) {
@@ -156,17 +156,15 @@
             }
         }
 
+
         if(test.length > 0){
             test.forEach(function(comment){
 
                 var newElement = document.createElement("li");
                 newElement.innerHTML = '<div class="commenterImage"><img src="http://placekitten.com/50/50"></div>';
-                newElement.innerHTML += '<div class="commentText"><p class="">' + comment.comment + '</p><span class="date sub-text">'+ new Date(); +'</span></div>';
+                newElement.innerHTML += '<div class="commentText"><p class="">' + comment.comment + '</p><span class="date sub-text">'+ comment.date; +'</span></div>';
                 p.appendChild(newElement);
             });
-
-
-
         }
     };
 
@@ -180,8 +178,7 @@
         var comment = $("#comment").val();
         var p = document.getElementById('commentList');
         var c = document.getElementById('comment');
-
-        console.log("Local storage " + comment);
+        var date = new Date();
 
         var test = localStorage.getItem("commentArray");
         var obj = [];
@@ -189,13 +186,13 @@
         if(test){
             obj= JSON.parse(test);
         }
-        obj.push({"id":  id, "comment":comment});
+        obj.push({"id":  id, "comment":comment, "date": date});
         localStorage.setItem("commentArray",JSON.stringify(obj));
         id++;
 
         var newElement = document.createElement("li");
         newElement.innerHTML = '<div class="commenterImage"><img src="http://placekitten.com/50/50"></div>';
-        newElement.innerHTML += '<div class="commentText"><p class="">' + comment + '</p><span class="date sub-text">'+ new Date(); +'</span></div>';
+        newElement.innerHTML += '<div class="commentText"><p class="">' + comment + '</p><span class="date sub-text">'+ date; +'</span></div>';
         p.appendChild(newElement);
         c.value = "";
     })
