@@ -1,0 +1,10 @@
+CACHE MANIFEST
+#version 2
+CACHE:
+offline.html
+js/jquery-1.11.3.js
+Skiing.html
+Snowboarding.html
+fallback.html
+FALLBACK:
+fallback.html

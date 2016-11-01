@@ -2,9 +2,68 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Play In The Snow</title>
 </head>
 <body>
+    <a href="Skiing.html">Checkout skiing here</a>
+    <a href="Snowboarding.html">Checkout snowboarding</a>
+    <a href="other.html">Other snow activities</a>
 
+
+    <script>
+
+        var status = checkCacheStatus();
+        console.log(status);
+        loadDemo();
+        
+        function checkCacheStatus() {
+
+            var appCache = window.applicationCache;
+
+            switch (appCache.status) {
+                case appCache.UNCACHED: // UNCACHED == 0
+                    return 'UNCACHED';
+                    break;
+                case appCache.IDLE: // IDLE == 1
+                    return 'IDLE';
+                    break;
+                case appCache.CHECKING: // CHECKING == 2
+                    return 'CHECKING';
+                    break;
+                case appCache.DOWNLOADING: // DOWNLOADING == 3
+                    return 'DOWNLOADING';
+                    break;
+                case appCache.UPDATEREADY:  // UPDATEREADY == 4
+                    return 'UPDATEREADY';
+                    break;
+                case appCache.OBSOLETE: // OBSOLETE == 5
+                    return 'OBSOLETE';
+                    break;
+                default:
+                    return 'UKNOWN CACHE STATUS';
+                    break;
+            }
+
+
+        }
+        function loadDemo() {
+            if (navigator.onLine) {
+                console.log("load: Online");
+            } else {
+                console.log("load: Offline");
+            }
+
+        }
+
+        // Now add event listeners to notify a change in online status
+        window.addEventListener("online", function(e) {
+            console.log("event: Online");
+        }, true);
+        window.addEventListener("offline", function(e) {
+            console.log("event: Offline");
+        }, true);
+
+
+    </script>
 </body>
 </html>
