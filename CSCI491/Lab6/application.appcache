@@ -2,10 +2,9 @@ CACHE MANIFEST
 #version 2
 CACHE:
 index.html
-offline.html
-js/jquery-1.11.3.js
+Skating.html
 Skiing.html
 Snowboarding.html
-fallback.html
+other.html
 FALLBACK:
 fallback.html

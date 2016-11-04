@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<html manifest="application.appcache">
+<head>
+    <title>SnowMobile,Skate and Ski!</title>
+
+</head>
+<body>
+    <a href="Skiing.html">Checkout skiing here</a>
+    <a href="Snowboarding.html">Checkout snowboarding</a>
+    <a href="Skating.html">Or Go Skating.</a>
+
+
+<script>
+
+    // Get the page content
+    var pageHtml = document.body.innerHTML;
+    //alert(pageHtml);
+    var urlPath = window.location.toString();
+    var path = urlPath.split("/");
+    var fileName = path[path.length-1];
+    // Save it in local storage
+    localStorage.setItem( fileName, pageHtml );
+
+</script>
+</body>
+</html>

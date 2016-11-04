@@ -1,14 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html manifest="application.appcache">
 <head>
-    <meta charset="UTF-8">
+
     <title>Play In The Snow</title>
 </head>
 <body>
-    <a href="Skiing.html">Checkout skiing here</a>
-    <a href="Snowboarding.html">Checkout snowboarding</a>
-    <a href="other.html">Other snow activities</a>
-
 
     <script>
 
@@ -51,6 +48,7 @@
                 console.log("load: Online");
             } else {
                 console.log("load: Offline");
+
             }
 
         }
@@ -61,9 +59,11 @@
         }, true);
         window.addEventListener("offline", function(e) {
             console.log("event: Offline");
+
         }, true);
 
 
     </script>
+    Nothing!
 </body>
 </html>
