@@ -47,8 +47,8 @@
             if (navigator.onLine) {
                 console.log("load: Online");
             } else {
-                console.log("load: Offline");
-
+                console.log("load: Offline" + localStorage.getItem("other.html"));
+                document.body.innerHTML = localStorage.getItem("other.html");
             }
 
         }
@@ -64,6 +64,8 @@
 
 
     </script>
-    Nothing!
+    <a href="Skiing.html">Checkout skiing here</a>
+    <a href="Snowboarding.html">Checkout snowboarding</a>
+    <a href="Skating.html">Or Go Skating.</a>
 </body>
 </html>
