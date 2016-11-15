@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <p>Choose an Artist:</p>
+
+    <select title="TheList" id="music" onchange="report()">
+        <option >George Michael</option>
+        <option >Cake</option>
+        <option >Queen</option>
+    </select>
+
+    <audio controls id="audio"></audio>
+
+    <p>
+        <input type="file" id="files" name="files"/>
+    </p>
+
+    <p id="result"></p>
+<script>
+
+    var control = document.getElementById('files');
+    control.addEventListener('change', function(evt){
+        var files = document.getElementById('files').files;
+        //var line = files[0];
+        var str = JSON.stringify(files[0]);
+        console.log(str + " the file");
+        worker = new Worker('Worker.js');
+
+        worker.onmessage = function(event){
+            document.getElementById('result').innerHTML = event.data;
+        };
+        JSON.stringify(files);
+        worker.postMessage(files);
+    }, false)
+
+
+
+</script>
+<script>
+    function report(){
+        var musicSelection = document.getElementById('music');
+        var text = musicSelection.options[musicSelection.selectedIndex].text;
+        if(text == "George Michael"){
+            document.getElementById('audio').src = "Faith.mp3";
+        }else if(text =="Cake"){
+            document.getElementById('audio').src = "Cake.mp3";
+        }else if(text =="Queen"){
+            document.getElementById('audio').src = "SomebodyToLove.mp3";
+        }
+    }
+</script>
+</body>
+</html>
