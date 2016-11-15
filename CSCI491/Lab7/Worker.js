@@ -3,18 +3,63 @@
  */
 
 console.log('Working in 1');
-function readerFile(file){
-    var reader = new FileReader();
-    reader.onload = function(event){
-        contents = event.target.result;
-        lines = contents.split("<SEP>", 3);
-        console.log('Working in 2' + lines);
-        postMessage(lines);
-    };
-    reader.readAsDataURL(file);
-}
 
-self.addEventListener('message', function(e){
-    console.log('Got the message' + e);
-    readerFile(e);
+
+/*var reader = new FileReader();
+
+reader.onload = function(e) {
+    //var text = reader.result;
+    //var lines = text.split('<SEP>');
+    var display = document.getElementById('result');
+    display.innerText=reader.result;
+    //console.log(lines + " the file" + text);
+};
+
+
+reader.readAsText(files);
+
+});*/
+
+
+
+self.addEventListener('message', function(){
+    console.log('Got the message');
+
+            var txt = '';
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function(){
+                if(xmlhttp.status == 200 && xmlhttp.readyState == 4){
+                    txt = xmlhttp.responseText;
+                    var line = txt.split('<SEP>');
+                    var array = [];
+
+                    /*for(var i = 2; i < line.length; i+3){
+                        array.items.add({Artist: line[i], song: line[i+1]});
+                    }*/
+                    for (var a = 2; a <line.length; a+=3){
+                        //console.log(line[a]);
+                        array.push({'TrackID': line[a], 'Artist': line[a+1]});
+                        console.log(line[a+1]);
+
+                    }
+
+                    postMessage(array);
+                }
+            };
+            xmlhttp.open("GET","unique_artists.txt",true);
+            xmlhttp.send();
+
+
+    /*function readerFile(getFile){
+        var reader = new FileReader();
+        reader.onload = function(event){
+            contents = event.target.result;
+            lines = contents.split("<SEP>", 3);
+            console.log('Working in 2' + reader.result);
+            self.postMessage(lines);
+        };
+        reader.readAsText(getFile);
+    }
+
+    readerFile(e);*/
 });

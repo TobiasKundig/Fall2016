@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="jquery-1.11.3.js"></script>
 </head>
 <body>
 
@@ -23,20 +24,85 @@
     <p id="result"></p>
 <script>
 
-    var control = document.getElementById('files');
-    control.addEventListener('change', function(evt){
-        var files = document.getElementById('files').files;
+    window.onload = function(){
+        var control = document.getElementById('files');
+        control.addEventListener('change', function(evt) {
+
+            var files = control.files[0];
+
+            var worker = new Worker('Worker.js');
+
+            worker.onmessage = function(event){
+                console.log('Received in Main');
+                //var item = event[0];
+                //var obj = JSON.parse(JSON.stringify(item));
+                for (var b = 0; b < event.length; b++){
+                    var TrackID = event[b].TrackID;
+                    var Artist = event[b].Artist;
+                }
+                /*$(jQuery.parseJSON(JSON.stringify(event))).each(function(){
+                    var TrackID = this.TrackID;
+                    var Artist = this.Artist;
+
+                });*/
+                document.getElementById('result').innerHTML = "TrackID: " + TrackID + "Artist: " + Artist ;
+            };
+            //JSON.stringify(files);
+            worker.postMessage('Message');
+
+
+    })};
+
+
         //var line = files[0];
-        var str = JSON.stringify(files[0]);
-        console.log(str + " the file");
-        worker = new Worker('Worker.js');
+        //var str = JSON.stringify(files[0]);
+    /*window.onload = function(){
+        var myFile = new File([" "], "todo.txt");
+        if(myFile){
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                var text = reader.result;
+                var lines = text.split('<SEP>');
+                var display = document.getElementById('result');
+                display.innerText=reader.result;
+                console.log(lines + " the file" + text + reader.result);
+            };
+
+
+            reader.readAsText(myFile);
+        }else{
+            console.log("Failed to load file");
+        }
+    };*/
+
+    //var myFile = new File([""], 'todo.txt');
+
+    /*if(myFile){
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+            var text = reader.result;
+            var lines = text.split('<SEP>');
+            var display = document.getElementById('result');
+                display.innerHTML=reader.result;
+            console.log(lines + " the file" + text);
+        };
+
+
+        reader.readAsText(myFile);
+    }else{
+        console.log("Failed to load file");
+    }
+*/
+        /*worker = new Worker('Worker.js');
 
         worker.onmessage = function(event){
             document.getElementById('result').innerHTML = event.data;
         };
-        JSON.stringify(files);
-        worker.postMessage(files);
-    }, false)
+        //JSON.stringify(files);
+        worker.postMessage({'file': JSON.stringify(myFile)});
+    }, false)*/
 
 
 
