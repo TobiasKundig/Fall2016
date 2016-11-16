@@ -21,7 +21,7 @@
         <input type="file" id="files" name="files"/>
     </p>
 
-    <p id="result"></p>
+    <div id="result"></div>
 <script>
 
     window.onload = function(){
@@ -33,24 +33,17 @@
             var worker = new Worker('Worker.js');
 
             worker.onmessage = function(event){
-                console.log('Received in Main');
-                //var item = event[0];
-                //var obj = JSON.parse(JSON.stringify(item));
-                for (var b = 0; b < event.length; b++){
-                    var TrackID = event[b].TrackID;
-                    var Artist = event[b].Artist;
+
+                var item = event.data;
+                var result = document.getElementById("result").innerHTML;
+                var text = "";
+
+                for (var b = 0; b < item.length; b++){
+                    text += "<p>TrackID: " + item[b].TrackID + " Artist: " + item[b].Artist +"</p>";
                 }
-                /*$(jQuery.parseJSON(JSON.stringify(event))).each(function(){
-                    var TrackID = this.TrackID;
-                    var Artist = this.Artist;
-
-                });*/
-                document.getElementById('result').innerHTML = "TrackID: " + TrackID + "Artist: " + Artist ;
+                document.getElementById("result").innerHTML = text;
             };
-            //JSON.stringify(files);
-            worker.postMessage('Message');
-
-
+            worker.postMessage('Trump2020');
     })};
 
 

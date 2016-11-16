@@ -20,8 +20,6 @@ reader.readAsText(files);
 
 });*/
 
-
-
 self.addEventListener('message', function(){
     console.log('Got the message');
 
@@ -33,16 +31,9 @@ self.addEventListener('message', function(){
                     var line = txt.split('<SEP>');
                     var array = [];
 
-                    /*for(var i = 2; i < line.length; i+3){
-                        array.items.add({Artist: line[i], song: line[i+1]});
-                    }*/
                     for (var a = 2; a <line.length; a+=3){
-                        //console.log(line[a]);
                         array.push({'TrackID': line[a], 'Artist': line[a+1]});
-                        console.log(line[a+1]);
-
                     }
-
                     postMessage(array);
                 }
             };
