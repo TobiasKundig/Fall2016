@@ -2,9 +2,74 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Check Contribtutions</title>
+    <script src="jquery-1.11.3.js"></script>
 </head>
 <body>
 
+    <select id="choice">
+        <option>Donations by City</option>
+        <option>Donations by Date</option>
+        <option>Donations by Candidate</option>
+    </select>
+    <p id="result"></p>
+<table id="table"></table>
 </body>
+
+<script type="text/javascript">
+
+    var text = "";
+
+    var returnArray = [];
+
+    window.onload = function(){
+        var control = document.getElementById('choice');
+        control.addEventListener('change', function(evt) {
+            if(control.options[control.selectedIndex].text == "Donations by Date"){
+                console.log('By Date selection ' + control.options[control.selectedIndex].text);
+
+                byDate();
+
+            }
+        });
+
+        var xmlhttp = new XMLHttpRequest();
+        var txt = "";
+
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.status == 200 && xmlhttp.readyState == 4) {
+                txt = xmlhttp.responseText;
+                var line = txt.split(',');
+
+
+                console.log('in Response');
+                for (var a = 0; a <line.length; a++){
+                    returnArray.push({'TrackID': line[a]});
+                }
+            }
+        };
+        xmlhttp.open("GET","Contributions2016.txt",true);
+        xmlhttp.send();
+
+    };
+
+    function byDate(){
+
+        var array = returnArray;
+        //document.getElementById('result').innerHTML = text;
+        var table = "<tr><th>City</th><th>Amount</th></tr>";
+        var x = text.data;
+        console.log(array.length);
+
+        for (var i = 0; i < array.length; i++) {
+            table += "<tr><td>" +
+                array[i].TrackID +
+                "</td><td>"; //+
+                //array[i].Artist +
+                //"</td></tr>";
+        }
+        document.getElementById('table').innerHTML = table;
+    }
+
+</script>
 </html>
