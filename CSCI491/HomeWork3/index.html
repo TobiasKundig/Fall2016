@@ -13,6 +13,7 @@
         <option>Donations by Candidate</option>
     </select>
     <p id="result"></p>
+    <div id="resultText"></div>
 <table id="table"></table>
 </body>
 
@@ -39,18 +40,29 @@
         xmlhttp.onreadystatechange = function () {
             if (xmlhttp.status == 200 && xmlhttp.readyState == 4) {
                 txt = xmlhttp.responseText;
-                var line = txt.split(',');
+                var line = txt.match(/[^\r\n]+/g);
+                var firstLine = line[0].split(',');
 
+                for(var i = 1; i < line.length; i++){
+                    var element = line[i].match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g);
+                    var obj = {};
+
+                    for(var j=0; j < element.length; j++){
+
+                        //console.log('Object ' + firstLine[j] + " " + subElement[j]);
+                        if(["cand_nm","contb_receipt_amt","contb_receipt_dt","contbr_city"].indexOf(firstLine[j]) != -1){
+                            obj[firstLine[j]] = element[j];
+                        }
+
+                    }
+                    returnArray.push(obj);
+                }
 
                 console.log('in Response');
-                for (var a = 0; a <line.length; a++){
-                    returnArray.push({'TrackID': line[a]});
-                }
             }
         };
         xmlhttp.open("GET","Contributions2016.txt",true);
         xmlhttp.send();
-
     };
 
     function byDate(){
@@ -61,12 +73,33 @@
         var x = text.data;
         console.log(array.length);
 
+        var doc = $.parseXML("<xml/>");
+
+        var xml = doc.getElementsByTagName("xml")[0];
+        var key, elem;
+
+
+
+
+        //document.getElementById('result').innerText = xml;
+
         for (var i = 0; i < array.length; i++) {
+
+            var json = array[i];
+
+            for (key in json) {
+                if (json.hasOwnProperty(key)) {
+                    elem = doc.createElement(key);
+                    $(elem).text(json[key]);
+                    xml.appendChild(elem)
+                }
+            }
+
             table += "<tr><td>" +
-                array[i].TrackID +
-                "</td><td>"; //+
-                //array[i].Artist +
-                //"</td></tr>";
+                xml.getElementsByTagName("cand_nm")[0].childNodes[0].nodeValue +
+                "</td><td>" +
+                xml.getElementsByTagName("contb_receipt_dt")[i].childNodes[0].nodeValue +
+                "</td></tr>";
         }
         document.getElementById('table').innerHTML = table;
     }
