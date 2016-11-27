@@ -13,6 +13,7 @@
         <option>Donations by Candidate</option>
     </select>
     <p id="result"></p>
+    <div id="resultText"></div>
 <table id="table"></table>
 </body>
 
@@ -26,7 +27,7 @@
         var control = document.getElementById('choice');
         control.addEventListener('change', function(evt) {
             if(control.options[control.selectedIndex].text == "Donations by Date"){
-                console.log('By Date selection ' + control.options[control.selectedIndex].text);
+                //console.log('By Date selection ' + control.options[control.selectedIndex].text);
 
                 byDate();
 
@@ -39,35 +40,76 @@
         xmlhttp.onreadystatechange = function () {
             if (xmlhttp.status == 200 && xmlhttp.readyState == 4) {
                 txt = xmlhttp.responseText;
-                var line = txt.split(',');
+                var line = txt.match(/[^\r\n]+/g);
+                var firstLine = line[0].split(',');
+                var test = [];
 
+                for(var i = 1; i < line.length; i++){
+                    var element = line[i].match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g);
+                    var obj = {};
 
-                console.log('in Response');
-                for (var a = 0; a <line.length; a++){
-                    returnArray.push({'TrackID': line[a]});
+                    for(var j=0; j < element.length; j++){
+
+                        //console.log('Object ' + firstLine[j] + " " + subElement[j]);
+                        if(["cand_nm","contb_receipt_amt","contb_receipt_dt","contbr_city"].indexOf(firstLine[j]) != -1){
+
+                            obj[firstLine[j]] = element[j];
+
+                            //console.log(obj);
+                        }
+                    }
+                    test[i] = obj;
                 }
+
+                /*for (var k = 0; k < test.length; k++){
+                    console.log(test[k]);
+                }*/
+                localStorage.setItem('info', JSON.stringify(test));
             }
         };
         xmlhttp.open("GET","Contributions2016.txt",true);
         xmlhttp.send();
-
     };
 
     function byDate(){
 
+        var test = JSON.parse(localStorage.getItem('info'));
+        for (var k = 1; k < test.length; k++) {
+            //console.log(test[k]);
+        }
+            //console.log(test);
         var array = returnArray;
         //document.getElementById('result').innerHTML = text;
-        var table = "<tr><th>City</th><th>Amount</th></tr>";
-        var x = text.data;
-        console.log(array.length);
+        var table = "<tr><th>Candidate Name</th><th>Amount</th><th>Date</th><th>City</th></tr>";
 
-        for (var i = 0; i < array.length; i++) {
+        for (var i = 1; i < test.length; i++) {
+            var doc = $.parseXML("<xml/>");
+
+            var xml = doc.getElementsByTagName("xml")[0];
+            var key, elem;
+
+            var json = test[i];
+
+            for (key in json) {
+                if (json.hasOwnProperty(key)) {
+                    elem = doc.createElement(key);
+                    $(elem).text(json[key]);
+                    xml.appendChild(elem)
+                }
+            }
+
             table += "<tr><td>" +
-                array[i].TrackID +
-                "</td><td>"; //+
-                //array[i].Artist +
-                //"</td></tr>";
+                xml.getElementsByTagName("cand_nm")[0].childNodes[0].nodeValue +
+                "</td><td>" +
+                xml.getElementsByTagName("contb_receipt_amt")[0].childNodes[0].nodeValue +
+                "</td><td>" +
+                xml.getElementsByTagName("contb_receipt_dt")[0].childNodes[0].nodeValue +
+                "</td><td>" +
+                xml.getElementsByTagName("contbr_city")[0].childNodes[0].nodeValue +
+                "</td></tr>";
         }
+
+        console.log(xml);
         document.getElementById('table').innerHTML = table;
     }
 
