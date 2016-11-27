@@ -27,10 +27,7 @@
         var control = document.getElementById('choice');
         control.addEventListener('change', function(evt) {
             if(control.options[control.selectedIndex].text == "Donations by Date"){
-                //console.log('By Date selection ' + control.options[control.selectedIndex].text);
-
                 byDate();
-
             }
         });
 
@@ -43,6 +40,9 @@
                 var line = txt.match(/[^\r\n]+/g);
                 var firstLine = line[0].split(',');
                 var test = [];
+                var candidates = [];
+
+                //obj.candidates = candidates;
 
                 for(var i = 1; i < line.length; i++){
                     var element = line[i].match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g);
@@ -50,20 +50,13 @@
 
                     for(var j=0; j < element.length; j++){
 
-                        //console.log('Object ' + firstLine[j] + " " + subElement[j]);
                         if(["cand_nm","contb_receipt_amt","contb_receipt_dt","contbr_city"].indexOf(firstLine[j]) != -1){
-
                             obj[firstLine[j]] = element[j];
-
-                            //console.log(obj);
+                            //if(obj.candi)
                         }
                     }
                     test[i] = obj;
                 }
-
-                /*for (var k = 0; k < test.length; k++){
-                    console.log(test[k]);
-                }*/
                 localStorage.setItem('info', JSON.stringify(test));
             }
         };
@@ -73,20 +66,37 @@
 
     function byDate(){
 
+        var count = 0;
+        var xml = getData();
         var test = JSON.parse(localStorage.getItem('info'));
-        for (var k = 1; k < test.length; k++) {
-            //console.log(test[k]);
-        }
-            //console.log(test);
-        var array = returnArray;
-        //document.getElementById('result').innerHTML = text;
         var table = "<tr><th>Candidate Name</th><th>Amount</th><th>Date</th><th>City</th></tr>";
 
         for (var i = 1; i < test.length; i++) {
-            var doc = $.parseXML("<xml/>");
 
-            var xml = doc.getElementsByTagName("xml")[0];
-            var key, elem;
+            table += "<tr><td>" +
+                xml.getElementsByTagName("cand_nm")[count].childNodes[0].nodeValue +
+                "</td><td>" +
+                xml.getElementsByTagName("contb_receipt_amt")[count].childNodes[0].nodeValue +
+                "</td><td>" +
+                xml.getElementsByTagName("contb_receipt_dt")[count].childNodes[0].nodeValue +
+                "</td><td>" +
+                xml.getElementsByTagName("contbr_city")[count].childNodes[0].nodeValue +
+                "</td></tr>";
+            count++;
+        }
+
+        document.getElementById('table').innerHTML = table;
+    }
+
+
+    function getData(){
+        var test = JSON.parse(localStorage.getItem('info'));
+        var doc = $.parseXML("<xml/>");
+
+        var xml = doc.getElementsByTagName("xml")[0];
+        var key, elem;
+
+        for (var i = 1; i < test.length; i++) {
 
             var json = test[i];
 
@@ -97,21 +107,8 @@
                     xml.appendChild(elem)
                 }
             }
-
-            table += "<tr><td>" +
-                xml.getElementsByTagName("cand_nm")[0].childNodes[0].nodeValue +
-                "</td><td>" +
-                xml.getElementsByTagName("contb_receipt_amt")[0].childNodes[0].nodeValue +
-                "</td><td>" +
-                xml.getElementsByTagName("contb_receipt_dt")[0].childNodes[0].nodeValue +
-                "</td><td>" +
-                xml.getElementsByTagName("contbr_city")[0].childNodes[0].nodeValue +
-                "</td></tr>";
         }
-
-        console.log(xml);
-        document.getElementById('table').innerHTML = table;
+        return xml;
     }
-
 </script>
 </html>
