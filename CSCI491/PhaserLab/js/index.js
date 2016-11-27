@@ -14,7 +14,7 @@ var mainState = {
 		game.stage.backgroundColor = '#BDC2C5'; // set background color
 		game.physics.startSystem(Phaser.Physics.ARCADE); // set up the physics system
 		game.world.enableBody = true; // game objects can move and interact with one another
-		this.player  = game.add.sprite(32,32,box({length:32,width:32, color: '#4F616E'})
+		this.player  = game.add.sprite(32,32,box({length:32,width:32, color: '#11171c'})
 		);
 		this.cursor = game.input.keyboard.createCursorKeys(); // create a cursor object, use this to detect which key was pressed and react
 		this.player.body.collideWorldBounds = true;
@@ -22,39 +22,39 @@ var mainState = {
 		this.walls.enableBody = true;
 		var top = this.walls.create(0,0,box({length: game.world.width,
 						width: 16,
-						color:'#374A59' 
+						color:'#11171c'
 					}) // create a top wall
 		);
 		top.body.immovable = true;
 		var bottom = this.walls.create(0,game.world.height-16,box({length: game.world.width,
 						width: 16,
-						color:'#374A59' 
+						color:'#11171c'
 					}) // create a bottom wall
 		);
 		bottom.body.immovable = true;
 		var leftWall = this.walls.create(0,16,box({length: 16,
 						width: game.world.height-32,
-						color:'#374A59'
+						color:'#11171c'
 					}) // create a left wall
 		);
 		leftWall.body.immovable = true;
 		
 		var rightWall = this.walls.create(game.world.width-16,16,box({length: 16,
 						width: game.world.height-32,
-						color:'#374A59'
+						color:'#11171c'
 					}) // create a right wall
 		);
 		rightWall.body.immovable = true;
 		var innerWall1 = this.walls.create(game.world.width/4,16,box({length: 16,
 				width: game.world.height-game.world.height/4,
-				color:'#374A59'
+				color:'#11171c'
 					}) // create an inner wall
 		);
 		innerWall1.body.immovable = true;
 		
 		var innerWall2 = this.walls.create(game.world.width/2,128,box({length: 16,
 						width: game.world.height-game.world.height/4,
-						color:'#374A59'
+						color:'#11171c'
 					}) // create an inner wall
 		);
 		innerWall2.body.immovable = true;
@@ -63,7 +63,7 @@ var mainState = {
 			box({
 				length: 32,
 				width: 32,
-				color: '#A96262'
+				color: '#11171c'
 			})
 		);
 
@@ -116,8 +116,6 @@ gameOverState = {
 
 	}
 };
-
-
 
 game.state.add('gameOver', gameOverState); // add this new state
 
