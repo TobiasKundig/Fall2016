@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<candidates>
+    <candidate>
+        <name>  Hillary Clinton      </name>
+        <state>   New York  </state>
+        <caption> candidateImages/clinton.jpg  </caption>
+    </candidate>
+
+    <candidate>
+        <name>   Donald Trump     </name>
+        <state>  New York   </state>
+        <caption>  candidateImages/trump.jpg </caption>
+    </candidate>
+
+
+
+    <candidate>
+
+    </candidate>
+
+    <candidate>
+
+    </candidate>
+
+    <candidate>
+
+    </candidate>
+
+    <candidate>
+
+    </candidate>
+
+    <candidate>
+
+    </candidate>
+
+    <candidate>
+
+    </candidate>
+
+    <candidate>
+
+    </candidate>
+
+
+
+</candidates>

@@ -11,14 +11,15 @@ var game = new Phaser.Game(500,500);
 
 var mainState = {
 	create: function() {
-		game.stage.backgroundColor = '#080a0c'; // set background color
-		game.physics.startSystem(Phaser.Physics.ARCADE); // set up the physics system
-		game.world.enableBody = true; // game objects can move and interact with one another
-		this.player  = game.add.sprite(32,32,box({length:32,width:32, color: '#11171c'})
-		);
-		this.cursor = game.input.keyboard.createCursorKeys(); // create a cursor object, use this to detect which key was pressed and react
-		this.player.body.collideWorldBounds = true;
-		this.walls = game.add.group(); // create a group of sprites
+        game.stage.backgroundColor = '#000000'; // set background color
+        game.physics.startSystem(Phaser.Physics.ARCADE); // set up the physics system
+        game.world.enableBody = true; // game objects can move and interact with one another
+        this.player = game.add.sprite(32, 32, box({length: 32, width: 32, color: '#11171c'})
+        );
+        this.cursor = game.input.keyboard.createCursorKeys(); // create a cursor object, use this to detect which key was pressed and react
+        this.player.body.collideWorldBounds = true;
+    }
+		/*this.walls = game.add.group(); // create a group of sprites
 		this.walls.enableBody = true;
 		var top = this.walls.create(0,0,box({length: game.world.width,
 						width: 16,
@@ -93,10 +94,10 @@ var mainState = {
 	handlePlayerDeath: function (player, enemy){
 		player.kill(); // function to handle overlap with player and enemy
 		game.state.start('gameOver'); // start the game over 
-	}
+	}*/
 };
 
-gameOverState = {
+/*gameOverState = {
 	create: function(){
 		this.spacebar = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR); // add the spacebar
 		label = game.add.text(game.world.width/2, game.world.height/2,
@@ -114,9 +115,9 @@ gameOverState = {
 		}
 
 	}
-};
+};*/
 
-game.state.add('gameOver', gameOverState); // add this new state
+//game.state.add('gameOver', gameOverState); // add this new state
 
 game.state.add('main', mainState);
 game.state.start('main');

@@ -34,8 +34,8 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="720">
-              <caret line="30" column="34" lean-forward="false" selection-start-line="30" selection-start-column="34" selection-end-line="30" selection-end-column="34" />
+            <state relative-caret-position="1800">
+              <caret line="75" column="97" lean-forward="true" selection-start-line="75" selection-start-column="97" selection-end-line="75" selection-end-column="97" />
               <folding />
             </state>
           </provider>
@@ -68,10 +68,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1623" />
+    <option name="x" value="401" />
     <option name="y" value="65" />
     <option name="width" value="1871" />
-    <option name="height" value="1869" />
+    <option name="height" value="1292" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -101,6 +101,9 @@
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
   </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="0424394a-b1ed-48ae-8d16-4ed19c23be6a" name="Default" comment="" />
@@ -108,15 +111,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1480252541654</updated>
-      <workItem from="1480252543022" duration="3244000" />
+      <workItem from="1480252543022" duration="4829000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3244000" />
+    <option name="totallyTimeSpent" value="4829000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1623" y="65" width="1871" height="1869" extended-state="4" />
+    <frame x="401" y="65" width="1871" height="1292" extended-state="4" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24959914" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -166,8 +169,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="720">
-          <caret line="30" column="34" lean-forward="false" selection-start-line="30" selection-start-column="34" selection-end-line="30" selection-end-column="34" />
+        <state relative-caret-position="1800">
+          <caret line="75" column="97" lean-forward="true" selection-start-line="75" selection-start-column="97" selection-end-line="75" selection-end-column="97" />
           <folding />
         </state>
       </provider>

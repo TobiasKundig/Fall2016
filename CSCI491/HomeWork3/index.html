@@ -6,6 +6,12 @@
     <script src="jquery-1.11.3.js"></script>
 </head>
 <body>
+<h1>2016 Presidential Candidate Donations</h1>
+
+<p id="candidates">
+    <img id="picture">
+
+</p>
 
     <select id="choice">
         <option>Donations by City</option>
@@ -16,7 +22,49 @@
     <div id="resultText"></div>
 <table id="table"></table>
 </body>
+<script>
+    var container = $('#result');
 
+    //var table = "<tr>";
+
+        $(document).ready(function() {
+            $.ajax({
+
+                url: "candidates.xml",
+                type: "GET",
+
+                dataType: "xml",
+                success: function (xml) {
+
+                    // Parse the xml file and get data
+                    //var xmlDoc = $.parseXML(xml);
+
+                    //var $xml = $(xmlDoc);
+                    /*$(xml).find('name').each(function () {
+                        $("#candidates").append($(xml).text() + "<br />");
+                        //console.log($(xml).text() + " the Doc");
+                    });*/
+                    $(xml).find('caption').each(function () {
+                        //$("#picture").attr('src', $(this).text() );
+                        //console.log($(this).text() + " the Doc");
+
+                        var image = "<img src="+ $(this).text() +">";
+
+                        $(container).append(image);
+
+                        /*table.append("<td>" +
+                                "<img src="+ $(this).text() +"> " +
+                                "</td>");*/
+
+                    });
+                }
+            });
+        });
+
+        //table += "</tr>";
+        container.append(table);
+
+</script>
 <script type="text/javascript">
 
     var text = "";
@@ -70,8 +118,28 @@
         var xml = getData();
         var test = JSON.parse(localStorage.getItem('info'));
         var table = "<tr><th>Candidate Name</th><th>Amount</th><th>Date</th><th>City</th></tr>";
+        var dates = [];
 
+        for (var e = 0; e <test.length; e++){
+
+        }
+
+
+        var parsedXML = $.parseXML(xml),
+            $parsedXML = $( parsedXML ),
+            $check = $parsedXML.find('cand_nm');
+
+        console.log($check.text());
+
+        for (var b = 0; b <test.length; b++){
+            for (var c = 0; c < dates.length; c++){
+
+            }
+            if (dates)
+            dates[i] = xml.getElementsByTagName("contb_receipt_dt")[count].childNodes[0].nodeValue
+        }
         for (var i = 1; i < test.length; i++) {
+
 
             table += "<tr><td>" +
                 xml.getElementsByTagName("cand_nm")[count].childNodes[0].nodeValue +
