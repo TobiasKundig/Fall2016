@@ -36,15 +36,17 @@
                 dataType: "xml",
                 success: function (xml) {
 
-                    // Parse the xml file and get data
-                    //var xmlDoc = $.parseXML(xml);
+                    $(xml).find('candidate').each(function(){
 
-                    //var $xml = $(xmlDoc);
-                    /*$(xml).find('name').each(function () {
-                        $("#candidates").append($(xml).text() + "<br />");
-                        //console.log($(xml).text() + " the Doc");
-                    });*/
-                    $(xml).find('caption').each(function () {
+                        var name = $(this).find('name').text();
+                        var image = "<img src = " + $(this).find('caption').text() + ">";
+                        $(container).append(name, image);
+
+
+                    });
+
+
+                    /*$(xml).find('caption').each(function () {
                         //$("#picture").attr('src', $(this).text() );
                         //console.log($(this).text() + " the Doc");
 
@@ -52,11 +54,9 @@
 
                         $(container).append(image);
 
-                        /*table.append("<td>" +
-                                "<img src="+ $(this).text() +"> " +
-                                "</td>");*/
 
-                    });
+
+                    });*/
                 }
             });
         });
