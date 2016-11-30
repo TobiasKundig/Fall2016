@@ -6,18 +6,36 @@
     <script src="jquery-1.11.3.js"></script>
 </head>
 <body>
-<p id="result"></p>
-
-
+    <p id="result"></p>
+    <form>
+        Enter a search term<br>
+        Date: <input type="text" name="date" placeholder="xx-xxx-xx"><br>
+        City: <input type="text" name="city" placeholder="city"><br>
+        <button type="button">Enter</button>
+    </form>
 </body>
 
 <script>
     var encodedData = window.location.href.split('=')[1];
     var choice = decodeURI(encodedData);
-
+    var test = JSON.parse(localStorage.getItem('info'));
+    var total = 0;
     var container = $('#result');
 
     $(document).ready(function() {
+        for (var i = 1; i < test.length; i++){
+
+            var candidateName = test[i].cand_nm;
+            candidateName = candidateName.replace(/^"(.*)"$/, '$1');
+            //console.log(candidateName);
+            if(candidateName == choice) {
+
+                if(test[i].contb_receipt_amt != null){
+                    total += parseInt(test[i].contb_receipt_amt) || 0;
+                }
+            }
+        }
+
         $.ajax({
             url: "candidates.xml",
             type: "GET",
@@ -29,19 +47,52 @@
 
                     if(choice == name){
 
-                        var image = "<img onclick='theClick(this.id)' height='200' width='200' id="+name+" src = " + $(this).find('caption').text() + " >";
+                        var image = "<img height='200' width='200' id="+name+" src = " + $(this).find('caption').text() + " >";
                         var state = $(this).find('state').text();
-                        $(container).append(image, "<br>", name, "<br>");
-                        var button = "<button type='button'>Total Donations</button>";
-                        var button1 = "<button type='button'>Donations by City</button>";
-                        var button2 = "<button type='button'>Donations by Date</button>";
-                            $(container).append(button, "<br>", button1,"<br>", button2);
+
+                        $(container).append(image, "<br>", name, "<br>", state, "<br>", "Total donations: $" + total, "<br>");
                     }
                 });
             }
         })
     });
 
+    function byDate(){
+        var test = JSON.parse(localStorage.getItem('info'));
+        for (var i = 1; i < test.length; i++){
 
+            var candidateName = test[i].cand_nm;
+            candidateName = candidateName.replace(/^"(.*)"$/, '$1');
+            //console.log(candidateName);
+            if(candidateName == choice) {
+
+            }
+        }
+        $(container).append("<br><br>", "The total donations for " + choice + " is $" + total);
+    }
+
+    function byCity(){
+        var test = JSON.parse(localStorage.getItem('info'));
+
+        for (var i = 1; i < test.length; i++){
+
+            var candidateName = test[i].cand_nm;
+            candidateName = candidateName.replace(/^"(.*)"$/, '$1');
+            //console.log(candidateName);
+            if(candidateName == choice) {
+
+                if(test[i].contb_receipt_amt != null){
+                    total += parseInt(test[i].contb_receipt_amt) || 0;
+                }
+            }
+        }
+        $(container).append("<br><br>", "The total donations for " + choice + " is $" + total);
+
+    }
+    window.onload = function(){
+
+
+        $(container).append();
+    }
 </script>
 </html>
