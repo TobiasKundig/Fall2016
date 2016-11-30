@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <candidates>
     <candidate>
-        <name>  Hillary Clinton      </name>
-        <state>   New York  </state>
-        <caption> candidateImages/clinton.jpg  </caption>
+        <name>Hillary Clinton</name>
+        <state>New York</state>
+        <caption>candidateImages/clinton.jpg</caption>
     </candidate>
 
     <candidate>
-        <name>   Donald Trump     </name>
+        <name>Donald Trump</name>
         <state>  New York   </state>
-        <caption>  candidateImages/trump.jpg </caption>
+        <caption>candidateImages/trump.jpg</caption>
     </candidate>
 
-
-
     <candidate>
-        <name>   Bernie Sanders     </name>
+        <name>Bernie Sanders</name>
+        <state> New York </state>
+        <caption>candidateImages/bernie.jpg</caption>
     </candidate>
 
     <candidate>

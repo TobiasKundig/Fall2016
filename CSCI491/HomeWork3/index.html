@@ -9,7 +9,7 @@
 <h1>2016 Presidential Candidate Donations</h1>
 
 <p id="candidates">
-    <img id="picture">
+
 
 </p>
 
@@ -25,51 +25,32 @@
 <script>
     var container = $('#result');
 
-    //var table = "<tr>";
+    $(document).ready(function() {
+        $.ajax({
+            url: "candidates.xml",
+            type: "GET",
+            dataType: "xml",
+            success: function (xml) {
 
-        $(document).ready(function() {
-            $.ajax({
-
-                url: "candidates.xml",
-                type: "GET",
-
-                dataType: "xml",
-                success: function (xml) {
-
-                    $(xml).find('candidate').each(function(){
-
-                        var name = $(this).find('name').text();
-                        var image = "<img src = " + $(this).find('caption').text() + ">";
-                        $(container).append(name, image);
-
-
-                    });
-
-
-                    /*$(xml).find('caption').each(function () {
-                        //$("#picture").attr('src', $(this).text() );
-                        //console.log($(this).text() + " the Doc");
-
-                        var image = "<img src="+ $(this).text() +">";
-
-                        $(container).append(image);
-
-
-
-                    });*/
-                }
-            });
+                $(xml).find('candidate').each(function(){
+                    var name = $(this).find('name').text();
+                    var pic = $(this).find('caption').text();
+                    console.log(name);
+                    var image = "<img onclick='theClick(this.id)' height='92' width='92' id='"+name+"' src = '" + pic + "' >";
+                    var state = $(this).find('state').text();
+                    $(container).append(image, "<br>", name, "<br>", state, "<br>");
+                });
+            }
         });
+    });
 
-        //table += "</tr>";
-        container.append(table);
+    function theClick(theClick){
 
+        window.location = 'candidatePage.html?choice=' + theClick;
+    }
 </script>
+
 <script type="text/javascript">
-
-    var text = "";
-
-    var returnArray = [];
 
     window.onload = function(){
         var control = document.getElementById('choice');
@@ -123,7 +104,6 @@
         for (var e = 0; e <test.length; e++){
 
         }
-
 
         var parsedXML = $.parseXML(xml),
             $parsedXML = $( parsedXML ),

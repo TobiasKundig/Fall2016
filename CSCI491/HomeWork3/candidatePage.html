@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-1.11.3.js"></script>
+</head>
+<body>
+<p id="result"></p>
+
+
+</body>
+
+<script>
+    var encodedData = window.location.href.split('=')[1];
+    var choice = decodeURI(encodedData);
+
+    var container = $('#result');
+
+    $(document).ready(function() {
+        $.ajax({
+            url: "candidates.xml",
+            type: "GET",
+            dataType: "xml",
+            success: function (xml) {
+
+                $(xml).find('candidate').each(function(){
+                    var name = $(this).find('name').text();
+
+                    if(choice == name){
+
+                        var image = "<img onclick='theClick(this.id)' height='200' width='200' id="+name+" src = " + $(this).find('caption').text() + " >";
+                        var state = $(this).find('state').text();
+                        $(container).append(image, "<br>", name, "<br>");
+                        var button = "<button type='button'>Total Donations</button>";
+                        var button1 = "<button type='button'>Donations by City</button>";
+                        var button2 = "<button type='button'>Donations by Date</button>";
+                            $(container).append(button, "<br>", button1,"<br>", button2);
+                    }
+                });
+            }
+        })
+    });
+
+
+</script>
+</html>
