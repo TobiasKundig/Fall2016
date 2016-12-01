@@ -115,7 +115,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../threeJSLab" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
   </component>
   <component name="RunManager">
@@ -210,12 +210,12 @@
       <workItem from="1480424466282" duration="6392000" />
       <workItem from="1480432129571" duration="1742000" />
       <workItem from="1480456901353" duration="24889000" />
-      <workItem from="1480601712230" duration="7838000" />
+      <workItem from="1480601712230" duration="8445000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="103862000" />
+    <option name="totallyTimeSpent" value="104469000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="108" y="65" width="1857" height="1869" extended-state="4" />
