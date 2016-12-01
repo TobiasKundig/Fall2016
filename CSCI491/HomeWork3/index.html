@@ -6,18 +6,10 @@
     <script src="jquery-1.11.3.js"></script>
 </head>
 <body>
-<h1>2016 Presidential Candidate Donations</h1>
+<h1>2016 Presidential Candidate Donations For Montana</h1>
+<h3>Click on a candidate picture to get stats</h3>
+    <p id="candidates"></p>
 
-<p id="candidates">
-
-
-</p>
-
-    <select id="choice">
-        <option>Donations by City</option>
-        <option>Donations by Date</option>
-        <option>Donations by Candidate</option>
-    </select>
     <p id="result"></p>
     <div id="resultText"></div>
 <table id="table"></table>
@@ -35,7 +27,6 @@
                 $(xml).find('candidate').each(function(){
                     var name = $(this).find('name').text();
                     var pic = $(this).find('caption').text();
-                    console.log(name);
                     var image = "<img onclick='theClick(this.id)' height='92' width='92' id='"+name+"' src = '" + pic + "' >";
                     var state = $(this).find('state').text();
                     $(container).append(image, "<br>", name, "<br>", state, "<br>");
@@ -53,12 +44,6 @@
 <script type="text/javascript">
 
     window.onload = function(){
-        var control = document.getElementById('choice');
-        control.addEventListener('change', function(evt) {
-            if(control.options[control.selectedIndex].text == "Donations by Date"){
-                byDate();
-            }
-        });
 
         var xmlhttp = new XMLHttpRequest();
         var txt = "";
@@ -69,9 +54,6 @@
                 var line = txt.match(/[^\r\n]+/g);
                 var firstLine = line[0].split(',');
                 var test = [];
-                var candidates = [];
-
-                //obj.candidates = candidates;
 
                 for(var i = 1; i < line.length; i++){
                     var element = line[i].match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g);
@@ -81,7 +63,7 @@
 
                         if(["cand_nm","contb_receipt_amt","contb_receipt_dt","contbr_city"].indexOf(firstLine[j]) != -1){
                             obj[firstLine[j]] = element[j];
-                            //if(obj.candi)
+
                         }
                     }
                     test[i] = obj;
@@ -93,70 +75,5 @@
         xmlhttp.send();
     };
 
-    function byDate(){
-
-        var count = 0;
-        var xml = getData();
-        var test = JSON.parse(localStorage.getItem('info'));
-        var table = "<tr><th>Candidate Name</th><th>Amount</th><th>Date</th><th>City</th></tr>";
-        var dates = [];
-
-        for (var e = 0; e <test.length; e++){
-
-        }
-
-        var parsedXML = $.parseXML(xml),
-            $parsedXML = $( parsedXML ),
-            $check = $parsedXML.find('cand_nm');
-
-        console.log($check.text());
-
-        for (var b = 0; b <test.length; b++){
-            for (var c = 0; c < dates.length; c++){
-
-            }
-            if (dates)
-            dates[i] = xml.getElementsByTagName("contb_receipt_dt")[count].childNodes[0].nodeValue
-        }
-        for (var i = 1; i < test.length; i++) {
-
-
-            table += "<tr><td>" +
-                xml.getElementsByTagName("cand_nm")[count].childNodes[0].nodeValue +
-                "</td><td>" +
-                xml.getElementsByTagName("contb_receipt_amt")[count].childNodes[0].nodeValue +
-                "</td><td>" +
-                xml.getElementsByTagName("contb_receipt_dt")[count].childNodes[0].nodeValue +
-                "</td><td>" +
-                xml.getElementsByTagName("contbr_city")[count].childNodes[0].nodeValue +
-                "</td></tr>";
-            count++;
-        }
-
-        document.getElementById('table').innerHTML = table;
-    }
-
-
-    function getData(){
-        var test = JSON.parse(localStorage.getItem('info'));
-        var doc = $.parseXML("<xml/>");
-
-        var xml = doc.getElementsByTagName("xml")[0];
-        var key, elem;
-
-        for (var i = 1; i < test.length; i++) {
-
-            var json = test[i];
-
-            for (key in json) {
-                if (json.hasOwnProperty(key)) {
-                    elem = doc.createElement(key);
-                    $(elem).text(json[key]);
-                    xml.appendChild(elem)
-                }
-            }
-        }
-        return xml;
-    }
 </script>
 </html>

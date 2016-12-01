@@ -9,10 +9,12 @@
     <p id="result"></p>
     <form>
         Enter a search term<br>
-        Date: <input type="text" name="date" placeholder="xx-xxx-xx"><br>
-        City: <input type="text" name="city" placeholder="city"><br>
+        Date: <input type="text" id="date" placeholder="xx-xxx-xx"><br>
+        City: <input type="text" id="city" placeholder="city"><br>
         <button type="button" onclick="search()">Enter</button>
     </form>
+
+    <p id="searchResult"></p>
 </body>
 
 <script>
@@ -20,6 +22,7 @@
     var choice = decodeURI(encodedData);
     var test = JSON.parse(localStorage.getItem('info'));
     var total = 0;
+    var searchTotal = 0;
     var container = $('#result');
 
     $(document).ready(function() {
@@ -27,7 +30,7 @@
 
             var candidateName = test[i].cand_nm;
             candidateName = candidateName.replace(/^"(.*)"$/, '$1');
-            //console.log(candidateName);
+
             if(candidateName == choice) {
 
                 if(test[i].contb_receipt_amt != null){
@@ -59,40 +62,35 @@
 
     function search(){
 
-    }
+        var enteredDate = $('#date').val();
+        var enteredCity = $('#city').val();
 
-    function byDate(){
-        var test = JSON.parse(localStorage.getItem('info'));
-        for (var i = 1; i < test.length; i++){
+        if (enteredCity != "") {
 
-            var candidateName = test[i].cand_nm;
-            candidateName = candidateName.replace(/^"(.*)"$/, '$1');
-            //console.log(candidateName);
-            if(candidateName == choice) {
+            for (var i = 1; i < test.length; i++) {
 
-            }
-        }
-        $(container).append("<br><br>", "The total donations for " + choice + " is $" + total);
-    }
+                var candidateName = test[i].cand_nm;
+                candidateName = candidateName.replace(/^"(.*)"$/, '$1');
 
-    function byCity(){
-        var test = JSON.parse(localStorage.getItem('info'));
-
-        for (var i = 1; i < test.length; i++){
-
-            var candidateName = test[i].cand_nm;
-            candidateName = candidateName.replace(/^"(.*)"$/, '$1');
-            //console.log(candidateName);
-            if(candidateName == choice) {
-
-                if(test[i].contb_receipt_amt != null){
-                    total += parseInt(test[i].contb_receipt_amt) || 0;
+                if (test[i].contbr_city == enteredCity && candidateName == choice) {
+                    searchTotal += parseFloat(test[i].contb_receipt_amt) || 0;
                 }
             }
+            $('#searchResult').html("The total for " + enteredCity + " is $" + searchTotal);
+
+        }else if(enteredDate != ""){
+
+            for (var j = 1; j < test.length; j++){
+
+                candidateName = test[j].cand_nm;
+                candidateName = candidateName.replace(/^"(.*)"$/, '$1');
+
+                if(test[j].contb_receipt_dt === enteredDate && candidateName == choice){
+                    searchTotal += parseFloat(test[j].contb_receipt_amt) || 0;
+                }
+            }
+            $('#searchResult').html("The total for " + enteredDate + " is $" + searchTotal);
         }
-        $(container).append("<br><br>", "The total donations for " + choice + " is $" + total);
-
     }
-
 </script>
 </html>

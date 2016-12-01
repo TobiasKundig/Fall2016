@@ -7,39 +7,52 @@
     </candidate>
 
     <candidate>
-        <name>Trump, Donald</name>
-        <state>  New York   </state>
+        <name>Trump, Donald J.</name>
+        <state>New York</state>
         <caption>candidateImages/trump.jpg</caption>
     </candidate>
 
     <candidate>
         <name>Sanders, Bernard</name>
-        <state> New York </state>
+        <state>Vermont</state>
         <caption>candidateImages/bernie.jpg</caption>
     </candidate>
 
     <candidate>
 
+        <name>Cruz, Rafael Edward 'Ted'</name>
+        <state>Calgary</state>
+        <caption>candidateImages/cruz.jpg</caption>
     </candidate>
 
     <candidate>
-
+        <name>Huckabee, Mike</name>
+        <state>Arkansas</state>
+        <caption>candidateImages/huckabee.jpg</caption>
     </candidate>
 
     <candidate>
-
+        <name>Rubio, Marco</name>
+        <state>Florida</state>
+        <caption>candidateImages/rubio.jpg</caption>
     </candidate>
 
     <candidate>
-
+        <name>Paul, Rand</name>
+        <state>Kentucky</state>
+        <caption>candidateImages/paul.jpg</caption>
     </candidate>
 
     <candidate>
-
+        <name>Carson, Benjamin S.</name>
+        <state>Detroit</state>
+        <caption>candidateImages/carson.jpg</caption>
     </candidate>
 
     <candidate>
-
+        <name>Graham, Lindsey O.</name>
+        <state>South Carolina</state>
+        <caption>candidateImages/graham.jpg</caption>
     </candidate>
 
 
