@@ -73,7 +73,7 @@
                 candidateName = candidateName.replace(/^"(.*)"$/, '$1');
 
                 if (test[i].contbr_city == enteredCity && candidateName == choice) {
-                    searchTotal += parseFloat(test[i].contb_receipt_amt) || 0;
+                    searchTotal += parseInt(test[i].contb_receipt_amt) || 0;
                 }
             }
             $('#searchResult').html("The total for " + enteredCity + " is $" + searchTotal);
@@ -86,7 +86,7 @@
                 candidateName = candidateName.replace(/^"(.*)"$/, '$1');
 
                 if(test[j].contb_receipt_dt === enteredDate && candidateName == choice){
-                    searchTotal += parseFloat(test[j].contb_receipt_amt) || 0;
+                    searchTotal += parseInt(test[j].contb_receipt_amt) || 0;
                 }
             }
             $('#searchResult').html("The total for " + enteredDate + " is $" + searchTotal);

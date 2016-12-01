@@ -182,7 +182,7 @@
     <property name="nodejs_interpreter_path" value="/usr/bin/node" />
     <property name="js.eslint.eslintPackage" value="" />
     <property name="js-jscs-nodeInterpreter" value="/usr/bin/node" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../HomeWork3" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
@@ -257,12 +257,12 @@
       <updated>1480554976605</updated>
       <workItem from="1480554977900" duration="976000" />
       <workItem from="1480556380946" duration="498000" />
-      <workItem from="1480612268318" duration="4000" />
+      <workItem from="1480612268318" duration="53000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1478000" />
+    <option name="totallyTimeSpent" value="1527000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="108" y="65" width="1857" height="1869" extended-state="4" />
