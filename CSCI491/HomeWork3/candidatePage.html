@@ -11,7 +11,7 @@
         Enter a search term<br>
         Date: <input type="text" name="date" placeholder="xx-xxx-xx"><br>
         City: <input type="text" name="city" placeholder="city"><br>
-        <button type="button">Enter</button>
+        <button type="button" onclick="search()">Enter</button>
     </form>
 </body>
 
@@ -57,6 +57,10 @@
         })
     });
 
+    function search(){
+
+    }
+
     function byDate(){
         var test = JSON.parse(localStorage.getItem('info'));
         for (var i = 1; i < test.length; i++){
@@ -89,10 +93,6 @@
         $(container).append("<br><br>", "The total donations for " + choice + " is $" + total);
 
     }
-    window.onload = function(){
 
-
-        $(container).append();
-    }
 </script>
 </html>
