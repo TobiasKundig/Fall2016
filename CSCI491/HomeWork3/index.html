@@ -56,14 +56,13 @@
                 var test = [];
 
                 for(var i = 1; i < line.length; i++){
-                    var element = line[i].match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g);
+                    var element = line[i].match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g);
                     var obj = {};
 
                     for(var j=0; j < element.length; j++){
 
                         if(["cand_nm","contb_receipt_amt","contb_receipt_dt","contbr_city"].indexOf(firstLine[j]) != -1){
                             obj[firstLine[j]] = element[j];
-
                         }
                     }
                     test[i] = obj;

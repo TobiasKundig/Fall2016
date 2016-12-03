@@ -8,10 +8,15 @@
 <body>
     <p id="result"></p>
     <form>
-        Enter a search term<br>
-        Date: <input type="text" id="date" placeholder="xx-xxx-xx"><br>
-        City: <input type="text" id="city" placeholder="city"><br>
-        <button type="button" onclick="search()">Enter</button>
+        Choose a search term<br>
+
+        <p>
+            Choose date: <select id="dateOptions"></select>
+        </p>
+        <p>
+            Choose city: <select id="cityOptions"></select>
+        </p>
+
     </form>
 
     <p id="searchResult"></p>
@@ -21,11 +26,27 @@
     var encodedData = window.location.href.split('=')[1];
     var choice = decodeURI(encodedData);
     var test = JSON.parse(localStorage.getItem('info'));
-    var total = 0;
     var searchTotal = 0;
-    var container = $('#result');
+    var dateObjectArray = [];
+    var allMonths = ['Jan','Feb','Mar', "Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 
     $(document).ready(function() {
+        var container = $('#result');
+        var total = 0;
+        var cityOptions = document.getElementById('cityOptions');
+        var dateOptions = document.getElementById('dateOptions');
+        var citiesArray = [];
+        var dateArray = [];
+        var Arrayfirstyear = [];
+        var Arraysecondyear = [];
+        Arrayfirstyear.MonthArray = [];
+        Arraysecondyear.MonthArray = [];
+
+        var arrayCount = 0;
+        var firstdateCount = 0;
+        var dateCount = 0;
+        var seconddateCount = 0;
+
         for (var i = 1; i < test.length; i++){
 
             var candidateName = test[i].cand_nm;
@@ -33,10 +54,63 @@
 
             if(candidateName == choice) {
 
+                var cities = test[i].contbr_city;
+                var date = test[i].contb_receipt_dt;
+
                 if(test[i].contb_receipt_amt != null){
                     total += parseInt(test[i].contb_receipt_amt) || 0;
                 }
+                if($.inArray(cities, citiesArray) == -1){
+                    if(cities != ""){
+                        citiesArray[arrayCount] = cities;
+                        arrayCount++;
+                    }
+                }
+                if($.inArray(date, dateArray) == -1){
+                    var tempdt = date;
+                    tempdt = tempdt.split("-");
+
+                    dateArray[dateCount] = date;
+
+                    dateObjectArray[dateCount] = {
+                        month : tempdt[1],
+                        year : tempdt[2],
+                        day : tempdt[0],
+                        date : date
+                    };
+                    //
+                    if(tempdt[2] == 15){
+                        Arrayfirstyear[firstdateCount] = dateObjectArray[dateCount];
+                        firstdateCount++;
+                    }else{
+                        Arraysecondyear[seconddateCount] = dateObjectArray[dateCount];
+                        seconddateCount++;
+                    }
+                    dateCount++;
+                }
             }
+        }
+
+        citiesArray.sort();
+        for (var c = 0; c < citiesArray.length; c++){
+            cityOptions.options[cityOptions.options.length] = new Option(citiesArray[c], citiesArray[c])
+        }
+
+        Arrayfirstyear.sort(function(a,b){
+            return allMonths.indexOf(a.month) - allMonths.indexOf(b.month);
+        });
+        Arrayfirstyear.sort(function(a,b){
+            return allMonths.indexOf(a.month) - allMonths.indexOf(b.month);
+        });
+        /*Arraysecondyear.sort(function(a,b){
+            return a.day - b.day;
+        });*/
+
+        for (var d = 0; d < Arrayfirstyear.length; d++){
+            dateOptions.options[dateOptions.options.length] = new Option(Arrayfirstyear[d].date, Arrayfirstyear[d].date)
+        }
+        for (var e = 0; e < Arraysecondyear.length; e++){
+            dateOptions.options[dateOptions.options.length] = new Option(Arraysecondyear[e].date, Arraysecondyear[e].date)
         }
 
         $.ajax({
@@ -57,40 +131,38 @@
                     }
                 });
             }
-        })
+        });
     });
 
-    function search(){
+    $('#dateOptions').on('change', function(){
 
-        var enteredDate = $('#date').val();
-        var enteredCity = $('#city').val();
+        searchTotal = 0;
+        for (var j = 1; j < test.length; j++){
 
-        if (enteredCity != "") {
+            candidateName = test[j].cand_nm;
+            candidateName = candidateName.replace(/^"(.*)"$/, '$1');
 
-            for (var i = 1; i < test.length; i++) {
-
-                var candidateName = test[i].cand_nm;
-                candidateName = candidateName.replace(/^"(.*)"$/, '$1');
-
-                if (test[i].contbr_city == enteredCity && candidateName == choice) {
-                    searchTotal += parseInt(test[i].contb_receipt_amt) || 0;
-                }
+            if(test[j].contb_receipt_dt === this.value && candidateName == choice){
+                searchTotal += parseInt(test[j].contb_receipt_amt) || 0;
             }
-            $('#searchResult').html("The total for " + enteredCity + " is $" + searchTotal);
-
-        }else if(enteredDate != ""){
-
-            for (var j = 1; j < test.length; j++){
-
-                candidateName = test[j].cand_nm;
-                candidateName = candidateName.replace(/^"(.*)"$/, '$1');
-
-                if(test[j].contb_receipt_dt === enteredDate && candidateName == choice){
-                    searchTotal += parseInt(test[j].contb_receipt_amt) || 0;
-                }
-            }
-            $('#searchResult').html("The total for " + enteredDate + " is $" + searchTotal);
         }
-    }
+        $('#searchResult').html("The total for " + this.value + " is $" + searchTotal);
+    });
+
+    $('#cityOptions').on('change', function(){
+
+        searchTotal = 0;
+        for (var j = 1; j < test.length; j++){
+
+            candidateName = test[j].cand_nm;
+            candidateName = candidateName.replace(/^"(.*)"$/, '$1');
+
+            if(test[j].contbr_city === this.value && candidateName == choice){
+                searchTotal += parseInt(test[j].contb_receipt_amt) || 0;
+            }
+        }
+        $('#searchResult').html("The total for " + this.value + " is $" + searchTotal);
+    });
+
 </script>
 </html>
